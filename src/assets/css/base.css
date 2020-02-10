@@ -1,0 +1,112 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    background-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+body { 
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 1.6;
+    color: #76838f;
+    background-color: #fff;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+a {
+    color: #62a8ea;
+    text-decoration: none;
+}
+
+    a:hover, a:focus {
+        color: #89bceb;
+        text-decoration: underline;
+    }
+
+    a:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline: none;
+        outline-offset: -2px;
+    }
+
+figure {
+    margin: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+
+#centerDiv {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden; 
+} 
+.map-control-bar {
+    position: absolute; 
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+/*弹出层皮肤*/
+.layui-layer-title{background-color: #1E9FFF!important;color: #fff!important;}
+
+
+
+
+
+/* elementui 样式覆盖 */
+.el-card__body{
+    padding: 10px 0 !important;
+}
+.el-checkbox__inner{
+    background-color: transparent !important;
+    border: 1px solid #62a8ea !important;
+}
+.el-tree-node__content:link,.el-tree-node__content:visited,.el-tree-node__content:hover,.el-tree-node__content:active,.el-tree-node__content:focus{
+    background-color: transparent !important;
+}
+.el-tree-node:focus>.el-tree-node__content{
+    background: rgba(46, 45, 45, 0.5) !important;
+}
+
+
+
+ /* .content{
+	overflow: auto;
+	position: relative;
+	background: transparent;
+	height: 400px;
+	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+}  */
