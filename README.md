@@ -1,6 +1,6 @@
 # Mars2D项目模版 - Vue版（含widget模块）
  Vue技术栈下的一个具备基础widget功能的[Mars2D](http://leaflet.marsgis.cn)应用的项目模版
- 这是一个基于VueCli(https://cli.vuejs.org/config/)并整合了leaflet、MarsGIS的基础项目
+ 这是一个基于 [VueCli](https://cli.vuejs.org/config/)并整合了leaflet、MarsGIS的基础项目
 
  
 ## 运行效果
