@@ -1,12 +1,20 @@
-# Mars2D项目模版 - Vue版（含widget模块）
+# Mars2D基础项目模版 - Vue版（含widget模块）
  Vue技术栈下的一个具备基础widget功能的[Mars2D](http://leaflet.marsgis.cn)应用的项目模版。
  这是一个基于 [VueCli](https://cli.vuejs.org/config/)并整合了leaflet、MarsGIS的基础项目。
 
+ 其他技术栈，请参考 [Mars2D开源导航](https://github.com/marsgis/MarsGIS-for-Leaflet)
+ 
  
 ## 运行效果
- demo系统： [http://leaflet.marsgis.cn/demo.html](http://leaflet.marsgis.cn/demo.html)
+ [在线Demo1](http://leaflet.marsgis.cn/project/simple-es5-widget/index.html) 、
+ [在线Demo2](http://leaflet.marsgis.cn/project/simple-es5-widget/index.html?config=config/gcj.json)  、
+ [在线Demo3](http://leaflet.marsgis.cn/project/simple-es5-widget/index.html?config=config/baidu.json) 
 
- ![image](http://leaflet.marsgis.cn/docs/img/project/1.jpg)
+ ![image](http://leaflet.marsgis.cn/project/img/simple-es5-widget.jpg)
+ 
+ [更多项目体验](http://leaflet.marsgis.cn/project.html)
+
+ 
  
  
 ## 运行命令
@@ -24,8 +32,7 @@
 ## 项目说明
 1. 部分第三方库不是npm方式引入，是主页head中静态资源方式引入的。资源放在public目录下。
  主要原因是：
-*     （1）一些第三方leaflet插件并没有提供NPM包,以模块化的方式引入leaflet没办法直接使用这些第三方插件包,通过静态资源的方式可以解决此问题。
-*     （2）leaflet库有不同版本，并且我们有汉化修复bug，直接引入npm的库没法使用。
+  > 一些第三方leaflet插件并没有提供NPM包,以模块化的方式引入leaflet没办法直接使用这些第三方插件包,通过静态资源的方式可以解决此问题。 
 2. public目录下文件与 Mars2D基础项目 的目录和文件完全相同，可以直接复制到该目录下进行更新。
 
 3. public下面的widgets目录为之前传统js方式编写的一些widget模块，目前未重写为vue，当前为了兼容使用是静态引入的方式。  
