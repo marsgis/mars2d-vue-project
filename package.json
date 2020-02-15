@@ -1,7 +1,7 @@
 {
   "name": "mars2d-simple-vue-widget",
   "version": "2.0.0",
-  "description": " mars2d项目模版-Vue版（含widget模块）",
+  "description": " Mars2D基础项目模版（含widget模块）-Vue版",
   "main": "index.js",
   "keywords": [
     "marsgis",
