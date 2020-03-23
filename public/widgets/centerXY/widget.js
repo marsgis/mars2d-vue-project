@@ -1,4 +1,4 @@
-/* 2017-9-26 17:24:33 | 修改 木遥（QQ：346819890） */
+/* 2017-9-26 17:24:33 | 修改 木遥（微信:  http://marsgis.cn/weixin.html ） */
 //模块：
 L.widget.bindClass(L.widget.BaseWidget.extend({
     map: null,//框架会自动对map赋值

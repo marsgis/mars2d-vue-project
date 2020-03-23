@@ -1,4 +1,4 @@
-/* 2017-12-7 11:57:13 | 修改 木遥（QQ：346819890） */
+/* 2017-12-7 11:57:13 | 修改 木遥（微信:  http://marsgis.cn/weixin.html ） */
 //第三方类库加载管理js，方便切换lib
 (function () {
     var r = new RegExp("(^|(.*?\\/))(include-lib\.js)(\\?|$)"),
@@ -15,7 +15,7 @@
     }
 
     //当前版本号,用于清理浏览器缓存
-    var cacheVersion = "20200102";
+    // var cacheVersion = "20200102";
 
     // cssExpr 用于判断资源是否是css
     var cssExpr = new RegExp('\\.css');
@@ -26,10 +26,10 @@
         for (var i = 0, len = list.length; i < len; i++) {
             var url = list[i];
             if (cssExpr.test(url)) {
-                var css = '<link rel="stylesheet" href="' + url + '?time=' + cacheVersion + '">';
+                var css = '<link rel="stylesheet" href="' + url + '">';
                 document.writeln(css);
             } else {
-                var script = '<script type="text/javascript" src="' + url + '?time=' + cacheVersion + '"><' + '/script>';
+                var script = '<script type="text/javascript" src="' + url + '"><' + '/script>';
                 document.writeln(script);
             }
         }
@@ -80,6 +80,9 @@
             ],
             'font-awesome': [
                 libpath + "fonts/font-awesome/css/font-awesome.min.css",
+            ],
+            'font-marsgis': [
+                libpath + "fonts/marsgis/iconfont.css",
             ],
             'web-icons': [
                 libpath + "fonts/web-icons/web-icons.css",
@@ -136,6 +139,7 @@
                 libpath + "echarts/dark.js"
             ],
             'echarts-gl': [
+                libpath + "echarts/echarts.min.js",
                 libpath + "echarts/echarts-gl.min.js"
             ],
             'echarts-forleaflet': [
@@ -152,14 +156,17 @@
                 libpath + "turf/turf.min.js"
             ],
             'esri-leaflet': [
-                libpath + "leafletPlugins/esri/esri-leaflet.js"
+                libpath + "leafletjs/plugins/esri/esri-leaflet.js"
             ],
             'leaflet-wfs': [
-                libpath + "leafletPlugins/wfs/leaflet-wfs.js"
+                libpath + "leafletjs/plugins/wfs/leaflet-wfs.js"
             ],
             'leaflet-mars': [
-                libpath + "leaflet-mars/leaflet.css",
-                libpath + "leaflet-mars/leaflet.js",
+                libpath + "leafletjs/leaflet/leaflet.css",    //leaflet
+                libpath + "leafletjs/leaflet/leaflet.js",
+                
+                libpath + "leafletjs/mars2d/mars2d.js",   //mars2d
+                libpath + "leafletjs/mars2d/mars2d.css",
             ],
         };
 
