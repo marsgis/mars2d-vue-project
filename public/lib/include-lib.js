@@ -161,12 +161,12 @@
             'leaflet-wfs': [
                 libpath + "leafletjs/plugins/wfs/leaflet-wfs.js"
             ],
-            'leaflet-mars': [
+            'mars2d': [
                 libpath + "leafletjs/leaflet/leaflet.css",    //leaflet
                 libpath + "leafletjs/leaflet/leaflet.js",
                 
-                libpath + "leafletjs/mars2d/mars2d.js",   //mars2d
-                libpath + "leafletjs/mars2d/mars2d.css",
+                libpath + "leafletjs/mars2d/mars2d.css",//mars2d
+                libpath + "leafletjs/mars2d/mars2d.js",   
             ],
         };
 
