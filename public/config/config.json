@@ -85,7 +85,7 @@
                 "pid": 10,
                 "name": "谷歌卫星",
                 "type": "tile",
-                "url": "http://www.google.cn/maps/vt?lyrs=s&x={x}&y={y}&z={z}",
+                "url": "http://mt1.google.cn/vt/lyrs=s&x={x}&y={y}&z={z}",
                 "icon": "googleimage.png"
             },
             {
