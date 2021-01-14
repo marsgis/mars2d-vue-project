@@ -2,7 +2,7 @@
  Vue技术栈下的一个具备基础widget功能的[Mars2D](http://leaflet.marsgis.cn)应用的项目模版。
  这是一个基于 [VueCli](https://cli.vuejs.org/config/)并整合了leaflet、MarsGIS的基础项目。
 
- 其他技术栈，请参考 [Mars2D开源导航](https://github.com/marsgis/MarsGIS-for-Leaflet)
+ 其他技术栈，请参考 [Mars2D开源导航](https://github.com/marsgis/mars2d)
  
  
 ## 运行效果
@@ -44,7 +44,7 @@
  请您自行拷贝"基础项目"的 config、img、lib和widgets目录覆盖至当前项目的public目录下
 
 ### 与其他脚手架的区别
-1. 与[mars2d-simple-vue-widget](https://github.com/marsgis/mars2d-simple-vue-widget)区别：
+1. 与[mars2d-vue-project-widget](https://github.com/marsgis/mars2d-vue-project-widget)区别：
   比其多了widget模块部分，其他没区别
 
  

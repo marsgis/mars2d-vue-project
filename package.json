@@ -1,5 +1,5 @@
 {
-  "name": "mars2d-simple-vue-widget",
+  "name": "mars2d-vue-project-widget",
   "version": "2.0.0",
   "description": " Mars2D基础项目模版（含widget模块）-Vue版",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "element-ui": "^2.4.7",
     "font-awesome": "^4.7.0",
@@ -33,7 +33,7 @@
     "vue-template-compiler": "^2.5.21"
   },
   "bugs": {
-    "url": "https://github.com/marsgis/mars2d-simple-vue-widget/issues",
+    "url": "https://github.com/marsgis/mars2d-vue-project-widget/issues",
     "email": "wh@marsgis.cn"
   },
   "author": {
@@ -41,5 +41,5 @@
     "url": "http://www.marsgis.cn"
   },
   "license": "ISC",
-  "homepage": "https://github.com/marsgis/mars2d-simple-vue-widget"
+  "homepage": "https://github.com/marsgis/mars2d-vue-project-widget"
 }
