@@ -1,4 +1,4 @@
-/* 2017-12-7 11:57:13 | 修改 木遥（微信:  http://marsgis.cn/weixin.html ） */
+/* 修改 木遥（微信:  http://marsgis.cn/weixin.html ） */
 //第三方类库加载管理js，方便切换lib
 (function () {
     var r = new RegExp("(^|(.*?\\/))(include-lib\.js)(\\?|$)"),
@@ -14,8 +14,7 @@
         }
     }
 
-    //当前版本号,用于清理浏览器缓存
-    // var cacheVersion = "20200102";
+    
 
     // cssExpr 用于判断资源是否是css
     var cssExpr = new RegExp('\\.css');
