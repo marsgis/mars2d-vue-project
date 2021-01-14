@@ -15,11 +15,28 @@ L.widget.bindClass(L.widget.BaseWidget.extend({
     //每个窗口创建完成后调用
     winCreateOK: function (viewopt, html) {
         if (viewopt.type != "append") return;
-         
+
         $(".toolBar").css(this.config.style || { top: '10px', right: '10px', });
 
+        var arr = this.config.data || this.data;
+
+        //移动设备上，处理下菜单层次
+        if (!haoutil.system.isPCBroswer()) {
+            var item1 = arr.shift();
+            var item2 = arr.shift();
+            var item3 = arr.shift();
+            arr[0].children.insert(item3, 0);
+            arr[0].children.insert(item2, 0);
+        }
+
+        this.initMenu(arr);
+    },
+
+    //构造 菜单
+    initMenu: function (arr) {
+        var that = this;
+
         var inhtml = "";
-        var arr = this.config.data;
         for (var i = 0, len = arr.length; i < len; i++) {
             var item = arr[i];
             if (item.hasOwnProperty("visible") && !item.visible) continue;
@@ -59,7 +76,6 @@ L.widget.bindClass(L.widget.BaseWidget.extend({
         $(".toolBar").html(inhtml);
 
 
-        var that = this;
         $(".toolBar .widget-btn").each(function () {
             $(this).click(function (e) {
                 var uri = $(this).attr('data-widget');
@@ -76,6 +92,9 @@ L.widget.bindClass(L.widget.BaseWidget.extend({
                 }
             });
         });
+
+
+
     },
     //激活插件
     activate: function () {

@@ -275,11 +275,18 @@ var manageLayersWidget = L.widget.bindClass(L.widget.BaseWidget.extend({
     },
     //定位
     centerAt: function (layer) {
-        if (layer && layer.centerAt) {
+        if (!layer) return
+
+        if (layer.config.flyTo) {
+            map.setView(layer.config.flyTo.latlng, layer.config.flyTo.zoom);
+            return;
+        }
+
+        if (layer.centerAt) {
             return layer.centerAt();
         }
 
-        if (layer && layer.getBounds) {
+        if (layer.getBounds) {
             map.fitBounds(layer.getBounds());
         }
     },
@@ -331,6 +338,11 @@ var manageLayersWidget = L.widget.bindClass(L.widget.BaseWidget.extend({
                 this.map.removeLayer(layer);
         }
 
+        //存在定位
+        if (layer.config.flyTo) {
+            this.centerAt(layer);
+        }
+
 
         //更新到分屏对比
         var mapCompare = L.widget.getClass('widgets/mapCompare/widget.js');
@@ -349,7 +361,7 @@ var manageLayersWidget = L.widget.bindClass(L.widget.BaseWidget.extend({
             });
         }
         else {
-            if (layer.setOpacity)  layer.setOpacity(opacity);
+            if (layer.setOpacity) layer.setOpacity(opacity);
 
             if (layer instanceof L.Path) {
                 layer.options.opacity = opacity;

@@ -14,7 +14,6 @@
         }
     }
 
-    
 
     // cssExpr 用于判断资源是否是css
     var cssExpr = new RegExp('\\.css');
@@ -144,9 +143,6 @@
             'echarts-forleaflet': [
                 libpath + "echarts/forleaflet/echarts-3.4.min.js",
             ],
-            'mapV': [
-                libpath + "mapV/mapv.min.js",
-            ],
             'highlight': [
                 libpath + "highlight/styles/foundation.css",
                 libpath + "highlight/highlight.pack.js"
@@ -154,21 +150,32 @@
             'turf': [
                 libpath + "turf/turf.min.js"
             ],
-            'esri-leaflet': [
+
+            'esri-leaflet': [ //arcgis服务支持插件
                 libpath + "leafletjs/plugins/esri/esri-leaflet.js"
-            ],
-            'leaflet-wfs': [
+            ],    
+            'leaflet-wfs': [//geoserver wfs 支持插件
                 libpath + "leafletjs/plugins/wfs/leaflet-wfs.js"
+            ],   
+
+            "mars2d-echarts": [ 
+                libpath + "echarts/forleaflet/echarts-3.4.min.js",
+                libpath + "leafletjs/plugins/visual/mars2d-visual.js"//echarts与mapV支持插件 
+            ], 
+            'mars2d-mapv': [
+                libpath + "mapV/mapv.min.js",
+                libpath + "leafletjs/plugins/visual/mars2d-visual.js"//echarts与mapV支持插件 
             ],
-            'mars2d': [
+
+            'mars2d': [//地图 主库
                 libpath + "leafletjs/leaflet/leaflet.css",    //leaflet
                 libpath + "leafletjs/leaflet/leaflet.js",
                 
-                libpath + "leafletjs/mars2d/mars2d.css",//mars2d
-                libpath + "leafletjs/mars2d/mars2d.js",   
+                libpath + "leafletjs/mars2d/mars2d.css", //mars2d
+                libpath + "leafletjs/mars2d/mars2d.js",  
+                libpath + "leafletjs/plugins/_controls/locate.js",   //覆盖内置toolbar的GPS定位方法
             ],
         };
-
  
 
         for (var i in arrInclude) {

@@ -25,13 +25,7 @@
                 "type": "www_tdt",
                 "layer": "vec",
                 "icon": "tianditumap.png",
-                "key": [
-                  "313cd4b28ed520472e8b43de00b2de56",
-                  "83b36ded6b43b9bc81fbf617c40b83b5",
-                  "0ebd57f93a114d146a954da4ecae1e67",
-                  "6c99c7793f41fccc4bd595b03711913e",
-                  "56b81006f361f6406d0e940d2f89a39c"
-                ],
+                "key": ["ad5bee3fe473a639887fa9d57a670c6e"],
                 "visible": true
             },
             {
@@ -39,13 +33,7 @@
                 "name": "天地图卫星",
                 "type": "www_tdt",
                 "layer": "img",
-                "key": [
-                  "313cd4b28ed520472e8b43de00b2de56",
-                  "83b36ded6b43b9bc81fbf617c40b83b5",
-                  "0ebd57f93a114d146a954da4ecae1e67",
-                  "6c99c7793f41fccc4bd595b03711913e",
-                  "56b81006f361f6406d0e940d2f89a39c"
-                ],
+                "key": ["ad5bee3fe473a639887fa9d57a670c6e"],
                 "icon": "tiandituimage.png"
             },
             {
@@ -54,13 +42,7 @@
                 "icon": "tianditudem.png",
                 "type": "www_tdt",
                 "layer": "ter",
-                "key": [
-                  "313cd4b28ed520472e8b43de00b2de56",
-                  "83b36ded6b43b9bc81fbf617c40b83b5",
-                  "0ebd57f93a114d146a954da4ecae1e67",
-                  "6c99c7793f41fccc4bd595b03711913e",
-                  "56b81006f361f6406d0e940d2f89a39c"
-                ],
+                "key": ["ad5bee3fe473a639887fa9d57a670c6e"],
                 "maxNativeZoom": 14,
                 "errorTileUrl": "img/tile/notile.png"
             },
@@ -83,10 +65,21 @@
             },
             {
                 "pid": 10,
-                "name": "谷歌卫星",
+                "name": "离线地图",
                 "type": "tile",
-                "url": "http://mt1.google.cn/vt/lyrs=s&x={x}&y={y}&z={z}",
-                "icon": "googleimage.png"
+                "url": "http://data.marsgis.cn/maptile/wgs3857img/{z}/{x}/{y}.jpg",
+                "maxNativeZoom": 18,
+                "icon": "baiduimage.png"
+            },
+
+            
+            {
+                "pid": 10,
+                "name": "ArcGIS地图",
+                "type": "tile",
+                "url": "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}",
+                "coordType": "gcj",
+                "icon": "bd-c-googlelite.png"
             },
             {
                 "pid": 10,
@@ -97,17 +90,57 @@
             },
             {
                 "pid": 10,
-                "name": "离线地图",
-                "type": "tile",
-                "url": "http://data.marsgis.cn/maptile/wgs3857img/{z}/{x}/{y}.jpg",
-                "maxNativeZoom": 18,
-                "icon": "baiduimage.png"
+                "name": "高德地图",
+                "type": "www_gaode",
+                "layer": "vec",
+                "coordType": "gcj",
+                "icon": "bingmap.png"
+            },
+            {
+                "pid": 10,
+                "name": "高德卫星",
+                "type": "www_gaode",
+                "layer": "img",
+                "coordType": "gcj",
+                "icon": "bingimage.png"
+            },
+            {
+                "pid": 10,
+                "name": "谷歌地图",
+                "type": "www_google",
+                "layer": "vec",
+                "coordType": "gcj",
+                "icon": "googlemap.png"
+            },
+            {
+                "pid": 10,
+                "name": "谷歌卫星",
+                "type": "www_google",
+                "layer": "img",
+                "coordType": "gcj",
+                "icon": "googleimage.png"
+            },
+            {
+                "pid": 10,
+                "name": "灰色地图",
+                "type": "arcgis_tile",
+                "url": "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetGray/MapServer",
+                "coordType": "gcj",
+                "icon": "bd-c-grayscale.png"
+            },
+            {
+                "pid": 10,
+                "name": "深色地图",
+                "type": "arcgis_tile",
+                "url": "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer",
+                "coordType": "gcj",
+                "icon": "bd-c-midnight.png"
             }
         ],
         "operationallayers": [
             { "id": 20, "name": "辅助图层", "type": "group" },
             { "pid": 20, "name": "经纬网", "type": "custom_jww" },
-            { "pid": 20, "name": "实时路况", "type": "www_gaode", "layer": "time" },
+            { "pid": 20, "name": "实时路况", "type": "www_gaode", "layer": "time" , "coordType": "gcj" },
 
 
             {

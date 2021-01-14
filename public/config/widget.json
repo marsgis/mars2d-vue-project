@@ -71,6 +71,12 @@
                     "id": "manageBasemaps",
                     "name": "地图切换",
                     "uri": "widgets/manageBasemaps/widget.js",
+                    "windowOptions": {
+                        "position": {
+                            "left": 50,
+                            "bottom": 25
+                        }
+                    },
                     "autoDisable": false,
                     "disableOther": false
                 },
