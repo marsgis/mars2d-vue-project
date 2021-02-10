@@ -40,7 +40,7 @@
  
         //为了节省github空间，没有上传lib下面的类库到github
         //如果离线使用，可以从付费交付后的基础项目的lib目录内拷贝覆盖，并注释下面一行代码
-        libpath = "http://leaflet.marsgis.cn/lib/"
+        libpath = "http://mars2d.cn/lib/"
  
 
         if (libpath.lastIndexOf('/') != libpath.length - 1)
