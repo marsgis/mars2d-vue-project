@@ -1,13 +1,5 @@
 module.exports = {
   presets: [
-    '@vue/app'
-  ],
-  plugins: [
-    [
-      '@babel/plugin-transform-modules-commonjs',
-      {
-        allowTopLevelThis: true,
-      },
-    ],
-  ],
+    '@vue/cli-plugin-babel/preset'
+  ]
 }

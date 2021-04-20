@@ -19,7 +19,8 @@
             "name": "右上角工具栏",
             "uri": "widgets/toolBar/widget.js",
             "data": [
-                { "name": "地图", "icon": "fa fa-map", "widget": "widgets/manageBasemaps/widget.js" },
+                { "name": "漫游", "icon": "fa fa-globe", "onclick": "L.widget.disableAll()", "visible": true },
+                { "name": "地图", "icon": "fa fa-map", "widget": "widgets/manageBasemaps/widget.js", "visible": false },
                 { "name": "图层", "icon": "fa fa-tasks", "widget": "widgets/manageLayers/widget.js" },
                 {
                     "name": "工具",

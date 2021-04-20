@@ -1,45 +1,73 @@
 {
-  "name": "mars2d-vue-project-widget",
-  "version": "2.0.0",
-  "description": " Mars2D基础项目模版（含widget模块）-Vue版",
+  "name": "mars2d-vue-template",
+  "version": "2.1.0",
+  "description": "Mars2D地图平台软件,Vue技术下的widget项目模版",
   "main": "index.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "mars2d": "^2.3.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "strip-pragma-loader": "^1.0.0",
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-plugin-router": "~4.2.0",
+    "@vue/cli-plugin-vuex": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "@vue/eslint-config-standard": "^5.1.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.1.2",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marsgis/mars2d-vue-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marsgis/mars2d-vue-template/issues",
+    "email": "wh@marsgis.cn"
+  },
   "keywords": [
     "marsgis",
     "mars2d",
     "leaflet",
     "vue",
-    "widget"
+    "gis"
   ],
-  "scripts": {
-    "dev": "vue-cli-service serve",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+  "author": "火星科技",
+  "license": "LGPL",
+  "homepage": "http://mars2d.cn",
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/standard"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
   },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "core-js": "^2.6.5",
-    "element-ui": "^2.4.7",
-    "font-awesome": "^4.7.0",
-    "vue": "^2.6.6",
-    "vue-router": "^3.0.1",
-    "vuetify": "^1.2.5",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-service": "^3.5.0",
-    "babel-plugin-jsx-v-model": "^2.0.3",
-    "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "vue-template-compiler": "^2.5.21"
-  },
-  "bugs": {
-    "url": "https://github.com/marsgis/mars2d-vue-project-widget/issues",
-    "email": "wh@marsgis.cn"
-  },
-  "author": {
-    "name": "火星科技",
-    "url": "http://www.marsgis.cn"
-  },
-  "license": "ISC",
-  "homepage": "https://github.com/marsgis/mars2d-vue-project-widget"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }

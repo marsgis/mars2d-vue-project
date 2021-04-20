@@ -43,6 +43,7 @@
         libpath = "http://mars2d.cn/lib/"
  
 
+
         if (libpath.lastIndexOf('/') != libpath.length - 1)
             libpath += "/";
 
@@ -178,9 +179,17 @@
         };
  
 
-        for (var i in arrInclude) {
+
+
+        var keys = {};
+        for (var i = 0, len = arrInclude.length; i < len; i++) {
             var key = arrInclude[i];
+
+            if (keys[key]) continue; //规避重复引入lib
+            keys[key] = true;
+
             inputLibs(libsConfig[key]);
+
         }
 
     }
