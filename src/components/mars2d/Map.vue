@@ -63,7 +63,12 @@ export default {
           return response.json()
         })
         .then((json) => {
+          // var timetik = setInterval(() => {
+          //   if (!window.L) return
+          //   clearInterval(timetik)
+
           this.initMars2d(json.map)
+          // }, 50)
         })
     }
   },
@@ -106,7 +111,7 @@ export default {
 
     // 初始化外部静态widget功能（兼容使用传统模式开发的一些widget）
     initStaticWidget(map, widget) {
-      L.widget.init(map, widget, '/')
+      L.widget.init(map, widget, window.basePath || '/')
     }
   }
 }
