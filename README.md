@@ -1,6 +1,6 @@
  
 <p align="center">
-<img src="http://mars2d.cn/logo.png" width="300px" />
+<img src="https://cdn.jsdelivr.net/gh/muyao1987/cdn/mars2d.cn/logo.png" width="300px" />
 </p>
 
 <p align="center">基于Vue3.x技术栈的 Mars2D🌎基础项目模板</p>
