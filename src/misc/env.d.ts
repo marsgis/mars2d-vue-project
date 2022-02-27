@@ -26,19 +26,19 @@ declare module "mapv" {
   export const DataSet: any
   export const utilCityCenter: any
   export const utilCurve: any
+  export const utilForceEdgeBundling: any
 }
 
 declare module "kml-geojson" {
-  export const toKml: (geojson:any, options:any) => any
-  export const toGeoJSON: (doc:any) => any
+  export const toKml: (geojson: any, options: any) => any
+  export const toGeoJSON: (doc: any) => any
 }
 
 // declare module "*.svg" {
 //   const svg: any
 //   export default svg
 // }
-
-// declare module "*.png" {
-//   const png: string
-//   export default png
-// }
+declare module "*/dom-to-image.js" {
+  // const domtoimage: any
+  // export default domtoimage
+}

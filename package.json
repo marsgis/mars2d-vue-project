@@ -22,10 +22,10 @@
     "echarts-gl": "^2.0.8",
     "kml-geojson": "^1.2.0",
     "localforage": "^1.10.0",
-    "mars2d": "^3.0.7",
-    "mars2d-echarts": "^3.0.7",
-    "mars2d-esri": "^3.0.7",
-    "mars2d-mapv": "^3.0.7",
+    "mars2d": "^3.0.8",
+    "mars2d-echarts": "^3.0.8",
+    "mars2d-esri": "^3.0.8",
+    "mars2d-mapv": "^3.0.8",
     "nprogress": "^0.2.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
@@ -33,7 +33,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/node": "^17.0.10",
+    "@types/node": "^17.0.18",
     "@vitejs/plugin-vue": "^2.1.0",
     "@vue/eslint-config-typescript": "^10.0.0",
     "consola": "^2.15.3",

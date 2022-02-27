@@ -1,5 +1,5 @@
 <template>
-  <mars-dialog title="坐标拾取" :handles="false" width="298" height="330" top="50" right="10" :min-width="340">
+  <mars-dialog title="坐标拾取" :handles="false" width="330" height="330" top="50" right="10" :min-width="340">
     <template #icon>
       <mars-icon icon="icon-park-outline:local" width="18" />
     </template>
@@ -21,9 +21,6 @@
           <a-form-item label="纬度">
             <mars-input v-model:value="formState.lat" class="lnglat-input"> </mars-input>
           </a-form-item>
-          <a-form-item label="高程">
-            <mars-input v-model:value="formState.alt" class="lnglat-input"> </mars-input>
-          </a-form-item>
         </div>
 
         <!-- 度分秒的面板 -->
@@ -40,9 +37,6 @@
               <mars-input v-model:value="formState.wdSecond"> </mars-input>"
             </a-space>
           </a-form-item>
-          <a-form-item label="高程">
-            <mars-input v-model:value="formState.alt" class="lnglat-input"> </mars-input>
-          </a-form-item>
         </div>
 
         <!-- 平面坐标的面板 -->
@@ -58,9 +52,6 @@
           </a-form-item>
           <a-form-item label="横坐标">
             <mars-input v-model:value="formState.gk6Y" class="lnglat-input"> </mars-input>
-          </a-form-item>
-          <a-form-item label="高度值">
-            <mars-input v-model:value="formState.alt" class="lnglat-input"> </mars-input>
           </a-form-item>
         </div>
       </a-form>
@@ -89,7 +80,6 @@ interface FormState {
   radioFendai: string
   lng: number
   lat: number
-  alt: number
   jdDegree: number
   jdMinute: number
   jdSecond: number
@@ -105,7 +95,6 @@ const formState: UnwrapRef<FormState> = reactive({
   radioFendai: "2",
   lng: 0,
   lat: 0,
-  alt: 0,
   jdDegree: 0,
   jdMinute: 0,
   jdSecond: 0,
@@ -119,16 +108,13 @@ const formState: UnwrapRef<FormState> = reactive({
 // 全局中间变量
 let currJD: number
 let currWD: number
-let currGD: number
 
 mapWork.eventTarget.on("loadOK", function (event: any) {
   currJD = event.currJD
   currWD = event.currWD
-  currGD = event.currGD
 
   formState.lng = mapWork.marsUtilFormtNum(currJD, 6)
   formState.lat = mapWork.marsUtilFormtNum(currWD, 6)
-  formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
 })
 
 const changeFanwei = () => {
@@ -142,7 +128,6 @@ const changeFanwei = () => {
       formState.wdMinute = mapWork.marsPointTrans(currWD).minute
       formState.wdSecond = mapWork.marsPointTrans(currWD).second
 
-      formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
       break
     case "3": // CGCS2000
       changeFendai()
@@ -151,7 +136,6 @@ const changeFanwei = () => {
       // 十进制
       formState.lng = mapWork.marsUtilFormtNum(currJD, 6)
       formState.lat = mapWork.marsUtilFormtNum(currWD, 6)
-      formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
       break
   }
 }
@@ -162,13 +146,11 @@ const changeFendai = () => {
     const zoon6 = mapWork.marsProj4Trans(currJD, currWD, formState.radioFendai)
     formState.gk6X = mapWork.marsUtilFormtNum(zoon6[0], 1)
     formState.gk6Y = mapWork.marsUtilFormtNum(zoon6[1], 1)
-    formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
   } else {
     // 十进制转2000平面三分度
     const zone3 = mapWork.marsProj4Trans(currJD, currWD, formState.radioFendai)
     formState.gk6X = mapWork.marsUtilFormtNum(zone3[0], 1)
     formState.gk6Y = mapWork.marsUtilFormtNum(zone3[1], 1)
-    formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
   }
 }
 
@@ -179,18 +161,16 @@ const bindMourseClick = () => {
 mapWork.eventTarget.on("clickMap", (event: any) => {
   currJD = event.point.lng
   currWD = event.point.lat
-  currGD = event.point.alt
 
   formState.lng = mapWork.marsUtilFormtNum(currJD, 6)
   formState.lat = mapWork.marsUtilFormtNum(currWD, 6)
-  formState.alt = mapWork.marsUtilFormtNum(currGD, 6)
   changeFanwei()
   // 更新面板
-  mapWork.updateMarker(false, currJD, currWD, currGD)
+  mapWork.updateMarker(false, currJD, currWD)
 })
 
 const submitCenter = () => {
-  if (!formState.lng || !formState.lat || !formState.alt) {
+  if (!formState.lng || !formState.lat) {
     $alert("坐标不能为空")
     return
   }
@@ -205,7 +185,7 @@ const submitCenter = () => {
     return
   }
 
-  mapWork.updateMarker(true, formState.lng, formState.lat, formState.alt)
+  mapWork.updateMarker(true, formState.lng, formState.lat)
 }
 </script>
 <style lang="less" scoped>

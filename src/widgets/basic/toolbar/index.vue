@@ -44,15 +44,15 @@ const data = [
     children: [
       // { name: "图上量算", icon: "icon-park-outline:ruler", widget: "measure" },
       { name: "坐标定位", icon: "icon-park-outline:local", widget: "location-point" }
-      // { name: "地区导航", icon: "icon-park-outline:location-region", widget: "location-region" },
+      // { name: "地区导航", icon: "fa:paper-plane-o", widget: "location-region" },
       // { name: "我的标记", icon: "icon-park-outline:mark", widget: "addmarker" },
       // { name: "视角书签", icon: "icon-park-outline:bookmark", widget: "bookmark" },
       // { name: "地图打印", icon: "icon-park-outline:printer", widget: "print" },
-      // { name: "飞行漫游", icon: "icon-park-outline:take-off", widget: "roamLine-list" },
+      // { name: "地图出图", icon: "ant-design:file-image-outlined", widget: "expImg" },
       // { name: "图上标绘", icon: "icon-park-outline:hand-painted-plate", widget: "plot" },
       // { name: "路线导航", icon: "icon-park-outline:connection", widget: "query-route" },
-      // { name: "卷帘对比", icon: "icon-park-outline:switch-contrast", widget: "map-split" },
-      // { name: "分屏对比", icon: "icon-park-outline:full-screen-play", widget: "map-compare" }
+      // { name: "分屏对比", icon: "icon-park-outline:full-screen-play", widget: "map-compare" },
+      // { name: "百度街景", icon: "icon-park-outline:full-screen-play", widget: "street-view" }
     ]
   }
 ]
@@ -72,19 +72,17 @@ const clickMenu = ({ key }: any) => {
   background: none !important;
   padding: 0 !important;
   border: none !important;
-  background-color: @background-base !important;
+  background-color: @mars-basecolor-reverse !important;
   .ant-btn {
     padding: 5px 10px;
+    color: #575c6e;
+    background-color: #fff !important;
+     &:hover {
+      background-color: @primary-color;
+    }
   }
   .mars-icon {
     margin-right: 5px;
-  }
-  .mars-button {
-    color: @mars-basecolor !important;
-  }
-  .mars-dropdown * {
-    background-color: @background-base !important;
-    color: @mars-basecolor !important;
   }
 }
 </style>

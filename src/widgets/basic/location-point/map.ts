@@ -49,37 +49,31 @@ export function marsProj4Trans(JD: number, WD: number, radio: string) {
 
 // 地图选点
 export function bindMourseClick() {
-  map.setCursor("crosshair")
   map.once(mars2d.EventType.click, function (event: any) {
-    map.setCursor("")
-    const cartesian = event.cartesian
-    const point = mars2d.LngLatPoint.fromCartesian(cartesian)
-    point.format() // 经度、纬度、高度
+    const point = event.latlng
     eventTarget.fire("clickMap", { point })
   })
 }
 
-
-let pointEntity: any
-export function updateMarker(hasCenter: boolean, jd: number, wd: number, alt: number) {
-  const position = [jd, wd, alt]
+let pointEntity: mars2d.graphic.Marker
+export function updateMarker(hasCenter: boolean, jd: number, wd: number) {
+  const latlng = [wd, jd]
 
   if (pointEntity == null) {
-    pointEntity = new mars2d.graphic.Point({
-      position: position,
+    pointEntity = new mars2d.graphic.Marker({
+      latlng: latlng,
       style: {
-        color: "#3388ff",
-        pixelSize: 10,
-        outlineColor: "#ffffff",
-        outlineWidth: 2
+        image: "img/marker/mark1.png",
+        width: 32,
+        height: 44
       }
     })
     map.graphicLayer.addGraphic(pointEntity)
   } else {
-    pointEntity.position = position
+    pointEntity.latlng = latlng
   }
 
   if (hasCenter) {
-    pointEntity.flyTo({ radius: 1000 })
+    map.flyToGraphic(pointEntity)
   }
 }
