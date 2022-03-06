@@ -161,7 +161,6 @@ mars2d-vue-project
 └───src                 主要项目代码
 │   └───common          公共核心文件
 │   └───components      公共组件
-│   └───directive       指令
 │   └───misc            ts模块定义
 │   └───pages           页面入口
 │   └───utils           工具方法
