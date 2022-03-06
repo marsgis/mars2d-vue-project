@@ -26,13 +26,22 @@ import useLifecycle from "@mars/common/uses/use-lifecycle"
 import * as mapWork from "./map"
 import { useWidget } from "@mars/common/store/widget"
 
-const { activate, disable } = useWidget()
+const { activate, disable, getWidget } = useWidget()
 
 onUnmounted(() => {
   disable("layer-tree")
 })
 
 useLifecycle(mapWork)
+
+const widget = getWidget("manage-layers")
+
+widget.onUpdate(() => {
+  treeData.value = []
+  expandedKeys.value = []
+  checkedKeys.value = []
+  initTree()
+})
 
 const treeData = ref<any[]>([])
 
@@ -44,6 +53,8 @@ const layersObj: any = {}
 
 const opacityObj: any = reactive({})
 
+let layers: any
+
 mapWork.eventTarget.on("loadOK", () => {
   initTree()
 })
@@ -51,7 +62,7 @@ mapWork.eventTarget.on("loadOK", () => {
 let lastWidget: any
 const checkedChange = (keys: string[], e: any) => {
   const layer = layersObj[e.node.id]
-  // console.log("点击的矢量图层", layer)
+
   if (layer) {
     if (!layer.isAdded) {
       mapWork.addLayer(layer)
@@ -97,11 +108,11 @@ const checkedChange = (keys: string[], e: any) => {
     }
     if (keys.indexOf(e.node.id) !== -1) {
       layer.show = true
-      if (layer.flyTo) {
+      if (layer.options.center) {
         layer.flyTo()
       }
     } else {
-      layer.show = false
+      mapWork.removeLayer(layer, layers)
     }
 
     // 处理图层构件树控件
@@ -119,6 +130,7 @@ const checkedChange = (keys: string[], e: any) => {
 function renderChildNode(keys: string[], children: any[]) {
   children.forEach((child) => {
     const layer = layersObj[child.id]
+
     if (layer) {
       if (!layer.isAdded) {
         mapWork.addLayer(layer)
@@ -187,7 +199,7 @@ function flyTo(item: any) {
 }
 
 function initTree() {
-  const layers = mapWork.getLayers()
+  layers = mapWork.getLayers()
   for (let i = layers.length - 1; i >= 0; i--) {
     const layer = layers[i] // 创建图层
 
@@ -210,6 +222,8 @@ function initTree() {
       if (layer.hasOpacity) {
         opacityObj[layer.id] = 100 * (layer.opacity || 0)
       }
+      layersObj[layer.id] = layer
+
       node.children = findChild(node, layers)
       treeData.value.push(node)
 
@@ -246,14 +260,11 @@ function findChild(parent: any, list: any[]) {
         opacity: 100 * (item.opacity || 0),
         parent: parent
       }
-
       if (item.hasOpacity) {
         opacityObj[item.id] = 100 * (item.opacity || 0)
       }
       layersObj[item.id] = item
-
       node.children = findChild(node, list)
-
       expandedKeys.value.push(node.key)
 
       if (item.isAdded && item.show) {

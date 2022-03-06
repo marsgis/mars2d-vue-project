@@ -1,4 +1,3 @@
-
 @font-size-base: 13px; // 主要字体大小
 
 @mars-basecolor: #000; // 基础字体颜色
@@ -21,7 +20,7 @@
 @button-background-active: #4db3ff; // 按钮激活背景颜色
 @collapse-header-color: #4db3ff; // 折叠面板头部颜色
 
-  .mars-main-view{
+.mars-main-view {
   color: @mars-basecolor;
   // collapse 折叠面板相关样式
   .ant-collapse,
@@ -143,7 +142,7 @@
 
   // 开关
   .ant-switch {
-    background-color: hsla(0, 0%, 100%, 0.3);
+    background-color: #ccc !important;
   }
   .ant-switch-checked {
     background-color: #4db3ff !important;
@@ -246,7 +245,7 @@
   .ant-divider-vertical {
     border-color: @mars-basecolor;
   }
-};
+}
 
 //树控件被选中
 .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
@@ -256,4 +255,13 @@
 //数组输入
 .ant-input-number-handler-wrap {
   background-color: @form-input-background !important;
+}
+
+//table表格滚动条
+.ant-table-body {
+  &::-webkit-scrollbar {
+    //整体样式
+    height: 0;
+    width: 0;
+  }
 }

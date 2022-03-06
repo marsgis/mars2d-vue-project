@@ -21,7 +21,6 @@
         "type": "group"
       },
       {
-        "id": 2021,
         "pid": 10,
         "name": "天地图电子",
         "icon": "img/basemaps/tianditumap.png",
@@ -178,11 +177,7 @@
         "url": "http://server.mars2d.cn/geoserver/mars/wms",
         "layers": "mars:hfjy",
         "transparent": true,
-        "format": "image/png",
-        "compare": {
-          "url": "http://server.mars2d.cn/geoserver/mars/wms",
-          "layers": "mars:hfdl"
-        }
+        "format": "image/png"
       },
 
       {
@@ -346,7 +341,7 @@
         "popup": "<p>名称:{NAME}<br>地址:{address}</p>",
         "symbol": {
           "styleOptions": {
-            "image": "img/marker/mark3.png",
+            "image": "img/marker/mark1.png",
             "width": 32,
             "height": 44
           }
@@ -395,13 +390,13 @@
         },
         "symbol": {
           "styleOptions": {
-            "iconFont": "fa fa-university",
+            "iconUrl": "img/marker/yuan1.png",
             "color": "#FF0000",
             "width": 30
           },
           "styleField": "NAME",
           "styleFieldOptions": {
-            "岗集收费站": { "iconFont": "fa fa-cab", "color": "#FC4E2A" },
+            "岗集收费站": { "iconUrl": "img/marker/yuan1.png", "color": "#FC4E2A" },
             "高刘收费站": { "color": "#E31A1C" },
             "蜀山收费站": { "color": "#BD0026" },
             "金寨路收费站": { "color": "#800026" }

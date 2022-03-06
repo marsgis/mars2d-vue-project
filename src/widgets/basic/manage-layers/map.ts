@@ -31,6 +31,18 @@ export function onUnmounted(): void {
 
 export function addLayer(layer: any) {
   map.addLayer(layer)
+  layer.show = true
+}
+
+export function removeLayer(layer: any, list: any) {
+  const children = list.filter((item: any) => item.pid === layer.id)
+  if (children.length > 0) {
+    for (let i = 0; i < children.length; i++) {
+      children[i].show = false
+    }
+  } else {
+    layer.show = false
+  }
 }
 
 export function getLayers() {

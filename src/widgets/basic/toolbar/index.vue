@@ -28,7 +28,7 @@
 <script setup lang="ts">
 /**
  * 导航菜单按钮 （右上角）
- * @copyright 火星科技 mars3d.cn
+ * @copyright 火星科技 mars2d.cn
  * @author 火星吴彦祖 2022-01-10
  */
 import { useWidget } from "@mars/common/store/widget"
@@ -58,7 +58,7 @@ const data = [
 ]
 
 const showWidget = (widget: string) => {
-  console.log(widget)
+  // console.log(widget)
   activate(widget)
 }
 
@@ -77,7 +77,7 @@ const clickMenu = ({ key }: any) => {
     padding: 5px 10px;
     color: #575c6e;
     background-color: #fff !important;
-     &:hover {
+    &:hover {
       background-color: @primary-color;
     }
   }

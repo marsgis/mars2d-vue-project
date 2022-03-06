@@ -1,6 +1,6 @@
 /**
  * 图上选点
- * @copyright 火星科技 mars3d.cn
+ * @copyright 火星科技 mars2d.cn
  * @author 火星胡椒 2022-01-10
  */
 import * as mars2d from "mars2d"
@@ -47,6 +47,18 @@ export function marsProj4Trans(JD: number, WD: number, radio: string) {
   }
 }
 
+// 转换成十进制的方法，修改input中的值时进行置换
+export function marsDms2degree(du: number, fen: number, miao: number) {
+  return mars2d.PointTrans.dms2degree(du, fen, miao)
+}
+export function marsZONEtoCRS(jd: number, wd: number, radio: string) {
+  if (radio === "2") {
+    return mars2d.PointTrans.proj4Trans([jd, wd], mars2d.CRS.CGCS2000_GK_Zone_6, mars2d.CRS.EPSG4326)
+  } else {
+    return mars2d.PointTrans.proj4Trans([jd, wd], mars2d.CRS.CGCS2000_GK_Zone_3, mars2d.CRS.EPSG4326)
+  }
+}
+
 // 地图选点
 export function bindMourseClick() {
   map.once(mars2d.EventType.click, function (event: any) {
@@ -55,7 +67,7 @@ export function bindMourseClick() {
   })
 }
 
-let pointEntity: mars2d.graphic.Marker
+let pointEntity: mars2d.graphic.Marker // 定位的坐标点-矢量数据
 export function updateMarker(hasCenter: boolean, jd: number, wd: number) {
   const latlng = [wd, jd]
 

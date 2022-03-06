@@ -4,7 +4,6 @@
  * @copyright 火星科技 mars2d.cn
  * @author 木遥 2022-01-01
  */
-
 .hu-color-picker {
   padding: 10px;
   background: #1d2024;
@@ -162,14 +161,12 @@
   background: #2e333a;
   box-sizing: border-box;
 }
-
 .marsColorView {
   display: inline-block;
   height: 20px;
   width: 80px;
   cursor: pointer;
 }
-
 .ml5 {
   margin-left: 5px;
 }
