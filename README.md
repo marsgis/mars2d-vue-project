@@ -34,7 +34,7 @@ Mars2D 基础项目 是基于[Mars2D 平台](http://mars2d.cn)做的一个应用
 
 ## 视频讲解
 
-建议先看一遍视频讲解，再实际操作。您可以[新页面查看高清视频](https://www.bilibili.com/video/bv1JF411q7Ut/)
+建议先看一遍视频讲解，再实际操作。您可以[新页面查看高清视频](https://www.bilibili.com/video/BV1DR4y1G75T/)
 
 
 
@@ -109,23 +109,12 @@ npm run build
 
 ## 运行效果
 
-访问[基础项目 Vue 版](http://mars2d.cn/project/jcxm-vue/index.html) 在线体验效果和功能
+访问[基础项目 Vue 版](http://mars2d.cn/project/vue/index.html) 在线体验效果和功能
 
 ![image](https://muyao1987.gitee.io/cdn/mars2d.cn/xm/jcxm-vue/1.jpg)
 
 
 
-## 浏览器支持
-
-本地开发推荐使用`Chrome 80+` 浏览器
-
-支持现代浏览器, 不支持 IE
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| :-: | :-: | :-: | :-: | :-: |
-| not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
-
- 
 
 
 ## 如何反馈问题？
@@ -470,7 +459,7 @@ export function onUnmounted(): void {
 #### `map.ts`和`index.vue`各自代码业务分离的原则
 
 - 涉及地图业务的操作均写在 map.ts 中
-- 涉及 UI 层面、和地图无关的操作均写在 index.vue 中,vue 中尽量不使用 mars2d 和 Leaflet 开头的类
+- 涉及 UI 层面、和地图无关的操作均写在 index.vue 中,vue 中尽量不使用 mars2d 和 L 开头的类
 
 #### index.vue 与 map.ts 交互
 
@@ -606,7 +595,7 @@ const show = (name: string) => {
 ```json
 // dependencies中添加
 {
-  "mars2d": "^3.2.0",
+  "mars2d": "^3.0.0",
   "mars2d-cesium": "^1.89.0",
   "@turf/turf": "^6.5.0",
   "kml-geojson": "^1.2.0",
@@ -682,7 +671,7 @@ app.use(injectState(widgetStore), key)
 
 ### 1. 如果切换mars2d到授权版
 
- 参考 [获取Mars2D](http://mars2d.cn/dev/guide/basics/download.html)中“从 Mars2D官网 下载获取”章节介绍。
+ 参考 [获取Mars2D SDK类库](http://mars2d.cn/dev/guide/basics/download.html)中“从 Mars2D官网 下载获取”章节介绍。
 
  流程大概是：
 - 将npm安装后的`node_modules/mars2d/`下的所有文件拷贝一份放在`src\common\mars2d-sdk\`目录。
@@ -702,7 +691,7 @@ chainWebpack: (config) => {
   "mars2d-cesium": "^1.89.0",
 },
 ```
- ![image](http://mars2d.cn/dev/img/guide/basics-download-import.jpg) 
+ ![image](http://mars2d.cn/dev/img/guide/start-download-import.jpg) 
 
 
 ### 2. 局域网离线使用时注意事项
@@ -715,7 +704,7 @@ chainWebpack: (config) => {
 
 - 修改 config.json 中`terrain`配置中，将已有的`"show": true`配置，改为`"show": false`
 - 修改 config.json 中`basemaps`数组配置中，将已有的`"show": true`的图层，将该值改为`"show": false` ，并将单张图片或离线地图加上`"show": true`，并修改相关 URL 地址。
-- 您也可以参考教程[发布三维数据服务](http://mars2d.cn/dev/guide/data/server.html)进行部署离线地图服务，里面也有一些示例离线数据。
+- 您也可以参考教程[发布地图服务](http://mars2d.cn/dev/guide/data/server.html)进行部署离线地图服务，里面也有一些示例离线数据。
 
 
 

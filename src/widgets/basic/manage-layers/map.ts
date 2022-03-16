@@ -18,6 +18,7 @@ export const eventTarget = new mars2d.BaseClass()
  */
 export function onMounted(mapInstance: mars2d.Map): void {
   map = mapInstance // 记录首次创建的map
+
   eventTarget.fire("loadOK")
 }
 

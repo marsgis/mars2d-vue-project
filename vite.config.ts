@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from "vite"
 import vue from "@vitejs/plugin-vue"
 import eslintPlugin from "vite-plugin-eslint"
 import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import"
+import externalGlobals from "rollup-plugin-external-globals"
 
 export default ({ mode }: ConfigEnv) => {
   const root = process.cwd()
@@ -33,8 +34,7 @@ export default ({ mode }: ConfigEnv) => {
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]
     },
     optimizeDeps: {
-      include: ["kml-geojson", "mars2d", "@mars/common/store/widget"],
-      exclude: ["leaflet"]
+      include: ["kml-geojson", "mars2d", "@mars/common/store/widget"]
     },
     json: {
       // 支持从 .json 文件中进行按名导入
@@ -65,9 +65,16 @@ export default ({ mode }: ConfigEnv) => {
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         input: {
-          demo: path.resolve(__dirname, "demo.html"),
-          index: path.resolve(__dirname, "index.html")
+          index: path.resolve(__dirname, "index.html"),
+          demo: path.resolve(__dirname, "demo.html")
         }
+        // 此处可排除不打包mars2d相关资源，需要在html中手动引入相关资源
+        // external: ["leaflet"],
+        // plugins: [
+        //   externalGlobals({
+        //     leaflet: "leaflet"
+        //   })
+        // ]
       },
       // 当设置为 true, 构建后将会生成 manifest.json 文件
       manifest: false,

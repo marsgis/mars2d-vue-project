@@ -4,9 +4,9 @@
  * @author 火星胡椒 2022-01-10
  */
 import * as mars2d from "mars2d"
+const L = mars2d.L
 let map: mars2d.Map // 地图对象
-// 事件对象，用于抛出事件给vue
-export const eventTarget = new mars2d.BaseClass()
+export const eventTarget = new mars2d.BaseClass()// 事件对象，用于抛出事件给vue
 
 // 初始化当前业务
 export function onMounted(mapInstance: mars2d.Map): void {
@@ -69,7 +69,7 @@ export function bindMourseClick() {
 
 let pointEntity: mars2d.graphic.Marker // 定位的坐标点-矢量数据
 export function updateMarker(hasCenter: boolean, jd: number, wd: number) {
-  const latlng = [wd, jd]
+  const latlng = L.latLng(wd, jd)
 
   if (pointEntity == null) {
     pointEntity = new mars2d.graphic.Marker({

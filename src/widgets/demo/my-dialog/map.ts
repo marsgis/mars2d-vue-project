@@ -17,6 +17,7 @@ export function onUnmounted(): void {
 export function drawExtent(): Promise<any> {
   return new Promise((resolve) => {
     map.graphicLayer.clear()
+
     // 绘制矩形
     map.graphicLayer.startDraw({
       type: "rectangle",
@@ -27,8 +28,8 @@ export function drawExtent(): Promise<any> {
         outlineWidth: 2,
         outlineColor: "rgba(255,255,0,1)"
       },
-      success: function (graphic: any) {
-        const rectangle = mars2d.PolyUtil.formatRectangle(graphic._rectangle_draw)
+      success: function (graphic: mars2d.graphic.Rectangle) {
+        const rectangle = graphic.outlineLatlngs
         resolve({ extent: JSON.stringify(rectangle) })
       }
     })

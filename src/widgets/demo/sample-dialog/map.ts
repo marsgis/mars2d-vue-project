@@ -29,7 +29,7 @@ export function drawExtent(): void {
       outlineColor: "rgba(255,255,0,1)"
     },
     success: function (graphic: mars2d.graphic.Rectangle) {
-      const rectangle = graphic.getRectangle({ isFormat: true })
+      const rectangle = graphic.outlineLatlngs
       eventTarget.fire("drawExtent", { extent: JSON.stringify(rectangle) }) // 抛出事件，可以vue中去监听事件
     }
   })

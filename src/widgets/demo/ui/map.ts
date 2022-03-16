@@ -2,10 +2,7 @@ import * as mars2d from "mars2d"
 
 let map: mars2d.Map // 地图对象
 
-/**
- * 构造bloom效果对象
- */
-let bloomEffect: mars2d.effect.BloomEffect
+
 
 // 事件对象，用于抛出事件给vue
 export const eventTarget = new mars2d.BaseClass()
@@ -19,9 +16,7 @@ export const eventTarget = new mars2d.BaseClass()
 export function onMounted(mapInstance: mars2d.Map): void {
   map = mapInstance // 记录首次创建的map
 
-  // 构造bloom效果 用于滑动条测试
-  bloomEffect = new mars2d.effect.BloomEffect({})
-  map.addEffect(bloomEffect)
+
 }
 
 /**
@@ -30,8 +25,6 @@ export function onMounted(mapInstance: mars2d.Map): void {
  */
 export function onUnmounted() {
   map.graphicLayer.clear()
-  map.removeEffect(bloomEffect, true)
-  bloomEffect = null
   map = null
 }
 
@@ -48,8 +41,8 @@ export function drawExtent(): void {
       outlineWidth: 2,
       outlineColor: "rgba(255,255,0,1)"
     },
-    success: function (graphic: any) {
-      const rectangle = mars2d.PolyUtil.formatRectangle(graphic._rectangle_draw)
+    success: function (graphic: mars2d.graphic.Rectangle) {
+      const rectangle = graphic.outlineLatlngs
       eventTarget.fire("drawExtent", { extent: JSON.stringify(rectangle) }) // 抛出事件，可以vue中去监听事件
     }
   })
@@ -57,24 +50,17 @@ export function drawExtent(): void {
 
 // 是否运行地图鼠标交互
 export function enableMapMouseController(value: boolean) {
-  map.setSceneOptions({
-    cameraController: {
-      enableZoom: value,
-      enableTranslate: value,
-      enableRotate: value,
-      enableTilt: value
-    }
-  })
+//
 }
 
 // 调整亮度 （演示滑动条）
 export function updateBrightness(val: number) {
-  bloomEffect.brightness = val
+//
 }
 
 // 调整对比度 （演示滑动条）
 export function updateContrast(val: number) {
-  bloomEffect.contrast = val
+//
 }
 
 // 创建图层
@@ -83,7 +69,7 @@ export function createLayer(layer: any) {
 }
 
 // 添加图层
-export function addLayer(layer: mars2d.BaseLayer) {
+export function addLayer(layer: any) {
   map.addLayer(layer)
 }
 
