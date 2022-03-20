@@ -72,7 +72,7 @@ export default ({ mode }: ConfigEnv) => {
         // external: ["leaflet"],
         // plugins: [
         //   externalGlobals({
-        //     leaflet: "leaflet"
+        //     leaflet: "L"
         //   })
         // ]
       },

@@ -9,11 +9,9 @@
 
 # dependencies
 /node_modules
-public/lib/mars2dUnminified/
-public/lib/mars2d/plugins/widget/
+src/common/mars2d-sdk/dist/plugins/
 mars2d-*src.*
-!mars2d-supermap-src.js*
-!mars2d-tdt-src.js*
+
 
 # profiling files
 chrome-profiler-events*.json

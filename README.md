@@ -595,9 +595,7 @@ const show = (name: string) => {
 ```json
 // dependencies中添加
 {
-  "mars2d": "^3.0.0",
-  "mars2d-cesium": "^1.89.0",
-  "@turf/turf": "^6.5.0",
+  "mars2d": "^3.1.0",  
   "kml-geojson": "^1.2.0",
   "vue": "^3.2.26",
   "vuex": "^4.0.2",

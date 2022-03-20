@@ -1,6 +1,6 @@
 {
   "name": "mars2d-vue-project",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "在Vue3技术栈下的Mars2D平台 基础项目",
   "scripts": {
     "dev": "vite",
@@ -22,8 +22,8 @@
     "kml-geojson": "^1.2.0",
     "leaflet": "^1.7.1",
     "localforage": "^1.10.0",
-    "mars2d": "^3.0.12",
-    "mars2d-esri": "^3.0.12",
+    "mars2d": "^3.1.0",
+    "mars2d-esri": "^3.1.0",
     "nprogress": "^0.2.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",
