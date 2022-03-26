@@ -33,6 +33,7 @@ const store: StoreOptions<WidgetState> = {
         group: "manage",
         disableOther: ["roamLine"]
       },
+
       {
         component: markRaw(
           defineAsyncComponent(
@@ -50,7 +51,9 @@ const store: StoreOptions<WidgetState> = {
         name: "layer-picture-guihua"
       },
       {
-        component: markRaw(defineAsyncComponent(() => import(/* webpackChunkName: "location-point" */ "@mars/widgets/basic/location-point/index.vue"))),
+        component: markRaw(
+          defineAsyncComponent(() => import(/* webpackChunkName: "location-point" */ "@mars/widgets/basic/location-point/index.vue"))
+        ),
         name: "location-point",
         group: "tools"
       }
