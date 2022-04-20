@@ -12,7 +12,7 @@
     "lint": "eslint ./src/**/*.{js,jsx,vue,ts,tsx} --fix && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@iconify/vue": "^3.1.3",
+    "@icon-park/vue-next": "^1.3.6",
     "@turf/turf": "^6.5.0",
     "ant-design-vue": "3.0.0-beta.13",
     "axios": "^0.25.0",
@@ -20,10 +20,12 @@
     "echarts": "^5.2.2",
     "echarts-gl": "^2.0.8",
     "kml-geojson": "^1.2.0",
-    "leaflet": "^1.7.1",
+    "leaflet": "^1.8.0",
     "localforage": "^1.10.0",
-    "mars2d": "^3.1.0",
+    "mapv": "^2.0.62",
+    "mars2d-echarts": "^3.1.0",
     "mars2d-esri": "^3.1.0",
+    "mars2d-mapv": "^3.1.0",
     "nprogress": "^0.2.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.31",

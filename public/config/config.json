@@ -30,13 +30,13 @@
             "name": "底图",
             "type": "tdt",
             "layer": "vec_d",
-            "key": ["ad5bee3fe473a639887fa9d57a670c6e"]
+            "key": ["789e558be762ff832392a0393fd8a4f1"]
           },
           {
             "name": "注记",
             "type": "tdt",
             "layer": "vec_z",
-            "key": ["ad5bee3fe473a639887fa9d57a670c6e"]
+            "key": ["789e558be762ff832392a0393fd8a4f1"]
           }
         ],
         "show": true
@@ -51,13 +51,13 @@
             "name": "底图",
             "type": "tdt",
             "layer": "img_d",
-            "key": ["ad5bee3fe473a639887fa9d57a670c6e"]
+            "key": ["789e558be762ff832392a0393fd8a4f1"]
           },
           {
             "name": "注记",
             "type": "tdt",
             "layer": "img_z",
-            "key": ["ad5bee3fe473a639887fa9d57a670c6e"]
+            "key": ["789e558be762ff832392a0393fd8a4f1"]
           }
         ]
       },
@@ -67,7 +67,7 @@
         "icon": "img/basemaps/tianditudem.png",
         "type": "tdt",
         "layer": "ter",
-        "key": ["ad5bee3fe473a639887fa9d57a670c6e"],
+        "key": ["789e558be762ff832392a0393fd8a4f1"],
         "maxNativeZoom": 14,
         "errorTileUrl": "img/tile/errortile.png"
       },

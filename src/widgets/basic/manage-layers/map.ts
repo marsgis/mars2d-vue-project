@@ -36,10 +36,11 @@ export function addLayer(layer: any) {
 }
 
 export function removeLayer(layer: any, list: any) {
-  const children = list.filter((item: any) => item.pid === layer.id)
+  const children = list.filter((item: any) => item.pid === layer.id || item.uuid === layer.uuid)
   if (children.length > 0) {
     for (let i = 0; i < children.length; i++) {
       children[i].show = false
+      children[i].remove()
     }
   } else {
     layer.show = false
