@@ -9,7 +9,7 @@
       "scale": true,
       "locationBar": {
         "crs": "CGCS2000_GK_Zone_3",
-        "template": "<div>经度:{lng}</div> <div>纬度:{lat}</div> <div>横{crsx}  纵{crsy}</div> <div>层级:{level}</div>"
+        "template": "<div>经度:{lng}</div> <div>纬度:{lat}</div> <div class='hide700'>横{crsx}  纵{crsy}</div> <div>层级:{level}</div>"
       },
       "zoom": { "position": "bottomleft" },
       "toolBar": { "position": "bottomleft" }
@@ -29,14 +29,12 @@
           {
             "name": "底图",
             "type": "tdt",
-            "layer": "vec_d",
-            "key": ["789e558be762ff832392a0393fd8a4f1"]
+            "layer": "vec_d"
           },
           {
             "name": "注记",
             "type": "tdt",
-            "layer": "vec_z",
-            "key": ["789e558be762ff832392a0393fd8a4f1"]
+            "layer": "vec_z"
           }
         ],
         "show": true
@@ -50,14 +48,12 @@
           {
             "name": "底图",
             "type": "tdt",
-            "layer": "img_d",
-            "key": ["789e558be762ff832392a0393fd8a4f1"]
+            "layer": "img_d"
           },
           {
             "name": "注记",
             "type": "tdt",
-            "layer": "img_z",
-            "key": ["789e558be762ff832392a0393fd8a4f1"]
+            "layer": "img_z"
           }
         ]
       },
@@ -67,7 +63,6 @@
         "icon": "img/basemaps/tianditudem.png",
         "type": "tdt",
         "layer": "ter",
-        "key": ["789e558be762ff832392a0393fd8a4f1"],
         "maxNativeZoom": 14,
         "errorTileUrl": "img/tile/errortile.png"
       },
