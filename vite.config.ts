@@ -4,7 +4,6 @@ import { defineConfig, loadEnv } from "vite"
 import vue from "@vitejs/plugin-vue"
 import eslintPlugin from "vite-plugin-eslint"
 import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import"
-import externalGlobals from "rollup-plugin-external-globals"
 
 export default ({ mode }: ConfigEnv) => {
   const root = process.cwd()
@@ -60,7 +59,7 @@ export default ({ mode }: ConfigEnv) => {
       sourcemap: false,
       // 自定义rollup-commonjs插件选项
       commonjsOptions: {
-        include: /node_modules|src\/common/
+        include: /node_modules|packages|src\/common/
       },
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {

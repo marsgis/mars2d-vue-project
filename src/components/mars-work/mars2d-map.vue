@@ -65,6 +65,7 @@ onBeforeUnmount(() => {
     map.destroy()
     map = null
   }
+  console.log("map销毁完成", map)
 })
 </script>
 
