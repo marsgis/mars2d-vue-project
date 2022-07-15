@@ -7,7 +7,7 @@
  * @copyright 火星科技 mars2d.cn
  * @author 火星吴彦祖 2022-02-19
  */
-import { computed, onBeforeUnmount, onMounted } from "vue"
+import { computed, onUnmounted, onMounted } from "vue"
 import * as mars2d from "mars2d"
 
 const props = withDefaults(
@@ -60,7 +60,7 @@ function onMapLoad() {
 }
 
 // 组件卸载之前销毁mars2d实例
-onBeforeUnmount(() => {
+onUnmounted(() => {
   if (map) {
     map.destroy()
     map = null

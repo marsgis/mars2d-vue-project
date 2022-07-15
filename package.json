@@ -11,7 +11,8 @@
     "build": "npm run lint && vite build",
     "serve:dist": "http-server ./dist",
     "lint": "vue-tsc --noEmit --skipLibCheck && npm run eslint",
-    "eslint": "eslint ./src/**/*.{js,jsx,vue,ts,tsx} --fix"
+    "eslint": "eslint ./src/**/*.{js,jsx,vue,ts,tsx} --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.3.6",
@@ -50,7 +51,9 @@
     "eslint-plugin-vue": "^8.3.0",
     "fs-extra": "^10.0.0",
     "http-server": "^14.1.0",
+    "husky": "^7.0.4",
     "less": "^4.1.2",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "rollup-plugin-external-globals": "^0.6.1",
     "serve-static": "^1.14.2",
@@ -85,5 +88,10 @@
   ],
   "author": "火星科技",
   "license": "Apache-2.0",
-  "homepage": "http://mars2d.cn"
+  "homepage": "http://mars2d.cn",
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "npm run eslint"
+    ]
+  }
 }

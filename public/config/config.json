@@ -160,6 +160,30 @@
         "type": "group"
       },
       {
+        "id": 4030,
+        "pid": 40,
+        "name": "PBF矢量瓦片",
+        "type": "group"
+      },
+      {
+        "pid": 4030,
+        "name": "规划图",
+        "type": "pbf",
+        "url": "http://server.mars2d.cn/geoserver/gwc/service/tms/1.0.0/mars%3Ahfgh3857@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf",
+        "interactive": true,
+        "style":{
+          "color": "rgba(110, 110, 110, 255)",
+          "opacity": 1,
+          "weight": 1,
+          "fill": true,
+          "fillColor": "rgba(205, 233, 247, 255)",
+          "fillOpacity": 1
+        },
+        "zIndex": 999,
+        "popup": "{用地名称}"
+      },
+
+      {
         "id": 4020,
         "pid": 40,
         "name": "OGC WMS数据",
@@ -172,7 +196,11 @@
         "url": "http://server.mars2d.cn/geoserver/mars/wms",
         "layers": "mars:hfjy",
         "transparent": true,
-        "format": "image/png"
+        "format": "image/png",
+        "compare": {
+          "url": "http://server.mars2d.cn/geoserver/mars/wms",
+          "layers": "mars:hfdl"
+        }
       },
 
       {
@@ -202,7 +230,6 @@
         "transparent": true,
         "format": "image/png"
       },
-
       {
         "id": 4010,
         "pid": 40,
@@ -336,7 +363,7 @@
         "popup": "<p>名称:{NAME}<br>地址:{address}</p>",
         "symbol": {
           "styleOptions": {
-            "image": "img/marker/mark1.png",
+            "image": "img/marker/mark3.png",
             "width": 32,
             "height": 44
           }
@@ -385,13 +412,13 @@
         },
         "symbol": {
           "styleOptions": {
-            "iconUrl": "img/marker/yuan1.png",
+            "iconFont": "fa fa-university",
             "color": "#FF0000",
             "width": 30
           },
           "styleField": "NAME",
           "styleFieldOptions": {
-            "岗集收费站": { "iconUrl": "img/marker/yuan1.png", "color": "#FC4E2A" },
+            "岗集收费站": { "iconFont": "fa fa-cab", "color": "#FC4E2A" },
             "高刘收费站": { "color": "#E31A1C" },
             "蜀山收费站": { "color": "#BD0026" },
             "金寨路收费站": { "color": "#800026" }
@@ -460,8 +487,8 @@
         "symbol": {
           "styleOptions": {
             "fillColor": "#3388ff",
-            "fillOpacity": 0.2,
-            "outlineColor": "#3388ff",
+            "fillOpacity": 0.3,
+            "outlineColor": "#0000FF",
             "outlineOpacity": 1,
             "outlineWidth": 1
           }
