@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://muyao1987.gitee.io/cdn/mars2d.cn/logo.png" width="300px" />
+<img src="http://mars2d.cn/logo.png" width="300px" />
 </p>
 
 <p align="center">基于Vue3.x技术栈的 Mars2D🌎基础项目系统</p>
@@ -110,10 +110,8 @@ npm run build
 ## 运行效果
 
 访问[基础项目 Vue 版](http://mars2d.cn/project/vue/index.html) 在线体验效果和功能
-
-![image](https://muyao1987.gitee.io/cdn/mars2d.cn/xm/jcxm-vue/1.jpg)
-
-
+ 
+ ![image](http://marsgis.cn/img/project/mars2d-vue-project-jcxm/1.jpg)
 
 
 
