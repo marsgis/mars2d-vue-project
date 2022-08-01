@@ -9,6 +9,7 @@
  */
 import { computed, onUnmounted, onMounted } from "vue"
 import * as mars2d from "mars2d"
+import { $alert, $message } from "@mars/components/mars-ui/index"
 
 const props = withDefaults(
   defineProps<{
@@ -32,17 +33,14 @@ const withKeyId = computed(() => `mars2d-container-${props.mapKey}`)
 onMounted(() => {
   // 获取配置
   mars2d.Util.fetchJson({ url: props.url }).then((data: any) => {
-    initMars3d({
-      // 合并配置项
-      ...data.mars2d,
-      ...props.options
-    })
+    initMars3d(data.mars2d)
   })
 })
 
 // onload事件将在地图渲染后触发
 const emit = defineEmits(["onload"])
 const initMars3d = (option: any) => {
+  option = mars2d.Util.merge(option, props.options) // 合并配置
   map = new mars2d.Map(withKeyId.value, option)
 
   // map构造完成后的一些处理
@@ -52,11 +50,17 @@ const initMars3d = (option: any) => {
 
 // map构造完成后的一些处理
 function onMapLoad() {
+  // Mars2D地图内部使用，如右键菜单弹窗
+  // @ts-ignore
+  window.globalAlert = $alert
+  // @ts-ignore
+  window.globalMsg = $message
+
   // 用于 config.json 中 西藏垭口 图层的详情按钮 演示
   // @ts-ignore
-  // window.showPopupDetails = (item: any) => {
-  //   alert(item.NAME);
-  // };
+  window.showPopupDetails = (item: any) => {
+    $alert(item.NAME)
+  }
 }
 
 // 组件卸载之前销毁mars2d实例

@@ -13,7 +13,7 @@
         </mars-button>
         <template #overlay>
           <a-menu @click="clickMenu">
-            <a-menu-item v-for="child in item.children" :key="child.widget">
+            <a-menu-item v-for="child in item.children" :key="child.widget" :title="child.title||child.name">
               <mars-icon :icon="child.icon" width="18" color="#76838f"></mars-icon>
               <span>{{ child.name }}</span>
             </a-menu-item>
@@ -35,7 +35,7 @@ import { useWidget } from "@mars/common/store/widget"
 
 const { activate } = useWidget()
 
-const data = [
+const data = window.toolBarMenuData || [
   { name: "底图", icon: "international", widget: "manage-basemap" },
   { name: "图层", icon: "layers", widget: "manage-layers" },
   {
