@@ -43,7 +43,7 @@ const data = window.toolBarMenuData || [
     icon: "tool",
     children: [
       // { name: "图上量算", icon: "ruler", widget: "measure" },
-      { name: "坐标定位", icon: "local", widget: "location-point" },
+      { name: "坐标定位", icon: "local", widget: "location-point" }
       // { name: "地区导航", icon: "send", widget: "location-region" },
       // { name: "我的标记", icon: "mark", widget: "addmarker" },
       // { name: "视角书签", icon: "bookmark", widget: "bookmark" },
