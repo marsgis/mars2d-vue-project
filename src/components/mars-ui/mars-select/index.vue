@@ -22,41 +22,22 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .mars-select {
-  color: @mars-basecolor;
-  background-color: @form-input-background !important;
+  color: var(--mars-text-color);
+  background-color: transparent !important;
   background: none;
-  * {
-    color: @mars-basecolor;
-  }
   :deep(.ant-select-selector) {
-    border-color: @border-color-ordinary !important;
+    border-color: var(--mars-base-border-color) !important;
     background: none;
     background-color: transparent !important;
-  }
-}
-:deep(.ant-select:not(.ant-select-disabled)) {
-  &:hover,
-  &:focus {
-    border-color: #4db3ff;
-    .ant-select-selector {
-      border-color: #4db3ff;
+    &:hover,
+    &:focus {
+      border-color: #4db3ff !important;
     }
   }
+
+  :deep(.ant-select-arrow) {
+    color: var(--mars-base-color) !important;
+  }
 }
 </style>
-<style lang="less">
-// 下拉选择
-// .mars-select-dropdown {
-//   background-color: @dropdown-background !important;
-//   .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-//     background-color: @dropdown-active-background !important;
-//   }
-//   .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-//     font-weight: 700;
-//     background-color: @dropdown-active-background !important;
-//   }
-//   .ant-select-item {
-//     transition: none;
-//   }
-// }
-</style>
+<style lang="less"></style>

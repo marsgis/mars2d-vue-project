@@ -22,21 +22,22 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .mars-input {
-  color: @mars-basecolor;
-  background-color: @form-input-background !important;
-  border-color: @border-color-ordinary;
+  color: var(--mars-text-color);
+  background-color: transparent !important;
   font-size: 12px !important;
-
   :deep(.ant-input) {
-    background-color: @form-input-background !important;
-    border-color: @border-color-ordinary;
-    color: @mars-basecolor;
+    background-color: transparent !important;
+    border-color: var(--mars-base-border-color);
+    color: var(--mars-text-color);
   }
   :deep(.ant-input-suffix .anticon) {
-    color: @mars-basecolor;
+    color: var(--mars-text-color);
   }
 }
+.ant-input-affix-wrapper-focused {
+  box-shadow: none;
+}
 .mars-input[disabled] {
-  color: @mars-disable-color;
+  color: var(--mars-disable-btn-bg);
 }
 </style>

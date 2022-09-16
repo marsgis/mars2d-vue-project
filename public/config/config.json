@@ -151,7 +151,6 @@
     ],
     "operationallayers": [
       { "id": 20, "name": "辅助图层", "type": "group" },
-      { "pid": 20, "name": "实时路况", "type": "gaode", "layer": "time" },
       { "pid": 20, "name": "经纬网", "type": "graticule" },
 
       {
@@ -171,7 +170,7 @@
         "type": "pbf",
         "url": "http://server.mars2d.cn/geoserver/gwc/service/tms/1.0.0/mars%3Ahfgh3857@EPSG%3A3857@pbf/{z}/{x}/{-y}.pbf",
         "interactive": true,
-        "style":{
+        "style": {
           "color": "rgba(110, 110, 110, 255)",
           "opacity": 1,
           "weight": 1,

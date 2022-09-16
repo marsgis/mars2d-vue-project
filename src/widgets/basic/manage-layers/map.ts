@@ -33,10 +33,14 @@ export function addLayer(layer: any) {
   layer.show = true
 }
 
-
 export function getLayers() {
   return map.getLayers({
     basemaps: true, // 是否取config.json中的basempas
     layers: true // 是否取config.json中的layers
   })
+}
+
+export function removeLayer(layer: any) {
+  layer.show = false
+  map.removeLayer(layer)
 }

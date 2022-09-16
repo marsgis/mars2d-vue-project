@@ -10,6 +10,7 @@ import Application from "./App.vue"
 import { injectState, key } from "@mars/common/store/widget"
 import store from "./widget-store"
 import MarsUIInstall from "@mars/components/mars-ui"
+import "@mars/components/mars-ui/common"
 
 const app = createApp(Application)
 

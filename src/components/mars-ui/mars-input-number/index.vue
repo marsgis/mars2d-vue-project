@@ -22,14 +22,18 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .mars-input-number {
-  color: @mars-basecolor;
-  background-color: @form-input-background !important;
-  border-color: @border-color-ordinary;
+  color: var(--mars-text-color);
+  background-color: transparent !important;
+  border-color: var(--mars-base-border-color);
+  width: 100%;
   * {
-    color: @mars-basecolor;
+    color: var(--mars-text-color);
   }
 }
 :deep(.ant-input-number-handler-wrap) {
   background: none;
+  .anticon {
+    color: var(--mars-text-color);
+  }
 }
 </style>

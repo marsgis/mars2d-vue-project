@@ -1,5 +1,5 @@
 <template>
-  <a-date-picker :locale="locale" :dayjs="dayjs" class="mars-date-picker" v-bind="attrs">
+  <a-date-picker :locale="locale" :dayjs="dayjs" class="mars-date-picker" dropdownClassName="mars-datepicker-dropdown" v-bind="attrs">
     <template v-for="(comp, name) in slots" :key="name" v-slot:[name]>
       <component :is="comp" />
     </template>
@@ -27,17 +27,46 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .mars-date-picker {
-  color: @mars-basecolor;
-  border-color: @border-color-ordinary !important;
-  background-color: @form-input-background !important;
-  :deep(.ant-picker-input > input) {
-    color: @mars-basecolor !important;
+  color: var(--mars-text-color);
+  border-color: var(--mars-base-border-color) !important;
+  background-color: transparent !important;
+  &:hover {
+    border-color: var(--mars-primary-color) !important;
+  }
+
+  :deep(.ant-picker-input) {
+    input {
+      color: var(--mars-text-color) !important;
+    }
   }
   :deep(.ant-picker-clear) {
-    background: transparent;
+    background: var(--mars-bg-base);
+    color: var(--mars-base-color) !important;
   }
-  * {
-    color: @mars-basecolor !important;
+  :deep(.ant-picker-suffix *) {
+    color: var(--mars-text-color);
+  }
+}
+</style>
+<style lang="less">
+.mars-datepicker-dropdown {
+  .ant-picker-panel-container {
+    .mars-drop-bg();
+  }
+  *,
+  .ant-picker-content th {
+    color: var(--mars-text-color);
+  }
+  .ant-picker-footer {
+    border: none;
+  }
+  .ant-picker-cell {
+    &:hover,
+    &.ant-picker-cell-selected {
+      .ant-picker-cell-inner {
+        background-color: var(--mars-primary-color) !important;
+      }
+    }
   }
 }
 </style>
