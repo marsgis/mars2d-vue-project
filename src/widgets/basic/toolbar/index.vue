@@ -79,6 +79,7 @@ const clickMenu = ({ key }: any) => {
     display: inline-block;
     padding: 6px 12px;
     height: 100%;
+    line-height: 4px;
     color: var(--mars-text-color);
     font-size: 15px;
     &:hover {
