@@ -24,7 +24,7 @@
     "echarts": "^5.2.2",
     "echarts-gl": "^2.0.8",
     "kml-geojson": "^1.2.0",
-    "leaflet": "^1.8.0",
+    "leaflet": "~1.9.2",
     "localforage": "^1.10.0",
     "mapv": "^2.0.62",
     "mars2d": "~3.1.0",
