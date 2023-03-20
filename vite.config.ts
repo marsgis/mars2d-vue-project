@@ -68,10 +68,11 @@ export default ({ mode }: ConfigEnv) => {
           demo: path.resolve(__dirname, "demo.html")
         }
         // 此处可排除不打包mars2d相关资源，需要在html中手动引入相关资源
-        // external: ["leaflet"],
+        // external: ["./leaflet", "./mars2d"],
         // plugins: [
         //   externalGlobals({
-        //     leaflet: "L"
+        //     leaflet: "L",
+        //     mars2d: "mars2d"
         //   })
         // ]
       },
