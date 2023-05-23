@@ -78,8 +78,8 @@ onUnmounted(() => {
   height: 100%;
   overflow: hidden;
 }
-.leaflet-tile-container img {
+/* .leaflet-tile-container img {
   width: 257px !important;
   height: 257px !important;
-}
+} */
 </style>
