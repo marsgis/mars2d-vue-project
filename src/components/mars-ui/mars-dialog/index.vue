@@ -1,6 +1,6 @@
 <template>
   <teleport :to="mergeProps.warpper">
-    <div class="mars-dialog-thumb" v-show="isFold" ref="thumbnailRef" @click="toogleFold(false)">
+    <div class="mars-dialog-thumb" v-show="isFold && show" ref="thumbnailRef" @click="toogleFold(false)">
       <mars-icon :icon="mergeProps.thumbnail.icon" :width="20" color="#FFFFFF"></mars-icon>
     </div>
     <div
@@ -8,15 +8,21 @@
       :class="[customClass, animationClass]"
       :style="{ 'padding-top': showHeader ? '44px' : '10px', 'padding-bottom': slots.footer ? '44px' : '10px' }"
       ref="dialogRef"
-      v-show="visible && !isFold"
+      v-show="visible && !isFold && show"
     >
-      <mars-icon v-if="mergeProps.closeable && !mergeProps.draggable" icon="close-one" :width="18" class="close-btn__flot" @click="close"></mars-icon>
       <div v-if="showHeader" class="mars-dialog__header" :style="{ cursor: mergeProps.draggable ? 'move' : 'auto' }" @mousedown="dragStart">
         <mars-icon v-if="mergeProps.icon" :icon="mergeProps.icon" :width="18" color="#41A8FF" class="icon"></mars-icon>
         <slot v-if="slots.title" name="title"></slot>
         <span v-else class="title">{{ mergeProps.title }}</span>
-        <mars-icon v-if="mergeProps.closeable" icon="close" :width="18" class="close-btn" @click="close"></mars-icon>
+        <mars-icon v-if="mergeProps.closeable && mergeProps.closeButton" icon="close" :width="18" class="close-btn" @click="close"></mars-icon>
       </div>
+      <mars-icon
+        v-else-if="mergeProps.closeable && mergeProps.closeButton"
+        icon="close-one"
+        :width="18"
+        class="close-btn__flot"
+        @click="close"
+      ></mars-icon>
 
       <div class="mars-dialog__content">
         <slot></slot>
@@ -38,9 +44,9 @@
 </template>
 <script lang="ts" setup>
 /**
- * dislog弹框
+ * dialog弹框
  * @copyright 火星科技 mars3d.cn
- * @author 火星吴彦祖 2022-02-19
+ * @author 火星渣渣灰 2022-02-19
  */
 import { computed, onMounted, onUnmounted, ref, useSlots, nextTick } from "vue"
 
@@ -56,11 +62,13 @@ interface Position {
 interface Props {
   warpper?: string // 容器id 默认是app，将作为定位的参照元素，一般不需要修改
   title?: string // 弹框标题
-  visible?: boolean // 是否显示
+  visible?: boolean // 是否启用
+  show?: boolean // 弹窗是否默认显示
 
   draggable?: boolean // 是否可拖拽
 
   closeable?: boolean // 是否可关闭
+  closeButton?: boolean // 是否显示关闭按钮
 
   animation?: string | boolean // 是否开启开场动画，或开场动画的class名
 
@@ -98,14 +106,16 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   visible: false,
+  show: true,
   closeable: false,
+  closeButton: true,
   draggable: true,
   animation: true,
   handles: false,
   defaultFold: false,
   minWidth: 100,
   minHeight: 100,
-  maxWidth: 1000,
+  maxWidth: 100000,
   maxHeight: 1000,
   zIndex: 900
 })
@@ -146,14 +156,14 @@ const mergeProps = computed(() => {
 
   if (!isAllowValue(newProps.left) && !isAllowValue(newProps.right)) {
     // left right 都不存在时默认出现在左侧
-    newProps.left = 10
+    newProps.right = 10
   }
   if (!isAllowValue(newProps.top) && !isAllowValue(newProps.bottom)) {
     // top bottom 都不存在时默认出现在顶部
     newProps.top = 10
   }
 
-  if (isAllowValue(newProps.closeable) && (slots.title || isAllowValue(newProps.icon) || isAllowValue(newProps.title) || newProps.draggable)) {
+  if (isAllowValue(newProps.closeable) && (slots.title || isAllowValue(newProps.title) || isAllowValue(newProps.icon) || newProps.draggable)) {
     newProps.closeable = true
   }
 
@@ -356,13 +366,17 @@ function setSize(attr: "width" | "height", v) {
     let value = v
     switch (attr) {
       case "width": {
-        value = Math.max(mergeProps.value.minWidth, value)
-        value = Math.min(mergeProps.value.maxWidth, value, warpperEle.offsetWidth)
+        if (!isPercentage(value)) {
+          value = Math.max(mergeProps.value.minWidth, value)
+          value = Math.min(mergeProps.value.maxWidth, value, warpperEle.offsetWidth)
+        }
         break
       }
       case "height": {
-        value = Math.max(mergeProps.value.minHeight, value)
-        value = Math.min(mergeProps.value.maxHeight, value, warpperEle.offsetHeight)
+        if (!isPercentage(value)) {
+          value = Math.max(mergeProps.value.minHeight, value)
+          value = Math.min(mergeProps.value.maxHeight, value, warpperEle.offsetHeight)
+        }
         break
       }
     }
@@ -434,6 +448,15 @@ function resize() {
   }
   if (pb.offsetLeft + pb.offsetWidth > warpperEle.offsetWidth) {
     setSize("width", warpperEle.offsetWidth - pb.offsetLeft)
+  }
+}
+
+// 处理百分比
+function isPercentage(value) {
+  if (typeof value === "string") {
+    return value.search("%") !== -1
+  } else {
+    return false
   }
 }
 
@@ -560,6 +583,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .mars-dialog {
   position: absolute;
   box-sizing: border-box;
@@ -583,13 +607,16 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+
     .icon {
       margin-right: 5px;
       color: #ffffff;
     }
+
     .title {
       font-size: 16px;
     }
+
     .close-btn {
       float: right;
       cursor: pointer;
@@ -632,6 +659,7 @@ export default {
     height: 10px;
     opacity: 0;
   }
+
   .handle-t {
     width: auto;
     top: 0;
@@ -639,6 +667,7 @@ export default {
     right: 10px;
     cursor: row-resize;
   }
+
   .handle-b {
     width: auto;
     bottom: 0;
@@ -646,6 +675,7 @@ export default {
     right: 10px;
     cursor: row-resize;
   }
+
   .handle-l {
     height: auto;
     top: 10px;
@@ -653,6 +683,7 @@ export default {
     bottom: 10px;
     cursor: col-resize;
   }
+
   .handle-r {
     height: auto;
     top: 10px;
@@ -660,11 +691,13 @@ export default {
     bottom: 10px;
     cursor: col-resize;
   }
+
   .handle-rb {
     bottom: 0;
     right: 0;
     cursor: nwse-resize;
   }
+
   .handle-lb {
     bottom: 0;
     left: 0;
@@ -684,6 +717,7 @@ export default {
     transform: none;
   }
 }
+
 .fadein-right {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -704,6 +738,7 @@ export default {
     transform: none;
   }
 }
+
 .fadein-left {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -749,6 +784,7 @@ export default {
     transform: none;
   }
 }
+
 .fadein-down {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -769,6 +805,7 @@ export default {
     transform: none;
   }
 }
+
 .fadein-center {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
