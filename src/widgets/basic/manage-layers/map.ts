@@ -44,3 +44,11 @@ export function removeLayer(layer: any) {
   layer.show = false
   map.removeLayer(layer)
 }
+
+export function flyToLayer(layer) {
+  if (layer.flyTo) {
+    layer.flyTo()
+  } else if (layer.getBounds) {
+    map.flyToBounds(layer.getBounds())
+  }
+}

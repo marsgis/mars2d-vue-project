@@ -104,7 +104,7 @@ const checkedChange = (keys: string[], e: any) => {
       layer.show = true
       if (!layer.options.noCenter) {
         // 在对应config.json图层节点配置 noCenter:true 可以不定位
-        layer.flyTo()
+        mapWork.flyToLayer(layer)
       }
     } else {
       mapWork.removeLayer(layer)
@@ -178,11 +178,11 @@ const onContextMenuClick = (node: any, type: string) => {
 function flyTo(item: any) {
   if (item.checked) {
     const layer = layersObj[item.id]
-    if (layer && layer.flyTo) {
-      layer.flyTo()
-    }
+    mapWork.flyToLayer(layer)
   }
 }
+
+
 
 function initTree() {
   const layers = mapWork.getLayers()
