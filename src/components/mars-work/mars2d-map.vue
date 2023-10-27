@@ -33,13 +33,13 @@ const withKeyId = computed(() => `mars2d-container-${props.mapKey}`)
 onMounted(() => {
   // 获取配置
   mars2d.Util.fetchJson({ url: props.url }).then((data: any) => {
-    initMars3d(data.mars2d)
+    initMars2d(data.mars2d)
   })
 })
 
 // onload事件将在地图渲染后触发
 const emit = defineEmits(["onload"])
-const initMars3d = (option: any) => {
+const initMars2d = (option: any) => {
   option = mars2d.Util.merge(option, props.options) // 合并配置
   map = new mars2d.Map(withKeyId.value, option)
 
