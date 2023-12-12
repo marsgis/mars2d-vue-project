@@ -58,7 +58,7 @@ export default defineComponent({
     position: absolute;
     width: 16px;
     height: 16px;
-    margin-top: -3px;
+    border-radius: 50%;
     border: 4px solid var(--mars-primary-color);
   }
   :deep(.ant-slider-dot-active, .ant-slider-handle) {

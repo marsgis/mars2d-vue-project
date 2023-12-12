@@ -67,7 +67,7 @@ const MarsColorPicker = defineComponent({
         {
           trigger: "click",
           placement: "right",
-          visible: visible.value,
+          open: visible.value,
           "onUpdate:visible": (v: boolean) => {
             visible.value = v
           },

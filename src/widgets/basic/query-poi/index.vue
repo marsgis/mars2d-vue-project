@@ -35,7 +35,7 @@
           </ul>
           <div class="query-site__page">
             <p class="query-site-allcount">共{{ allCount }}条结果</p>
-            <a-pagination @change="(page: number) => querySiteList(searchTxt, page)" size="small" :total="allCount" :pageSize="6" :simple="true" />
+            <a-pagination  @change="(page: number) => querySiteList(searchTxt, page)" size="small" :total="allCount" :pageSize="6" :simple="true" />
           </div>
         </template>
         <a-empty class="f-push-10-t" v-else />
@@ -54,7 +54,6 @@ import { $hideLoading, $showLoading } from "@mars/components/mars-ui/mars-loadin
 
 // 启用map.ts生命周期
 useLifecycle(mapWork)
-
 const storageName = "mars2d_queryGaodePOI"
 const siteListShow = ref(false)
 
@@ -66,6 +65,7 @@ const siteSource = ref<any[]>([])
 
 const allCount = ref(0)
 const url = "//www.amap.com/detail/"
+
 
 let timer
 
@@ -135,18 +135,18 @@ const selectPoint = async (value: any) => {
 }
 
 // 表格数据内部
-const pagination = {
-  onChange: (page: number) => {
-    querySiteList(searchTxt.value, page)
-  },
-  size: "small",
-  total: 0,
-  pageSize: 6,
-  simple: true
-}
+// const pagination = {
+//   onChange: (page: number) => {
+//     querySiteList(searchTxt.value, page)
+//   },
+//   size: "small",
+//   total: 0,
+//   pageSize: 6,
+//   simple: true
+// }
 
 function clickVoid(e) {
-  if (e.target.dataset?.event !== "prevent") {
+  if (e.target.dataset?.event !== "prevent" && e.target.tagName !== "INPUT") {
     e.preventDefault()
   }
 }
@@ -158,7 +158,7 @@ async function querySiteList(text: string, page: number) {
     $message("暂无数据")
   }
 
-  pagination.total = Number(result.allcount) || 0
+  // pagination.total = Number(result.allcount) || 0
   siteSource.value = result.list || []
   allCount.value = Number(result.allcount) || 0
 
@@ -296,7 +296,7 @@ function addHistory(data: any) {
   .query-site__page {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 10px;
     .query-site-allcount {
       font-size: 14px;
       color: var(--mars-text-color);

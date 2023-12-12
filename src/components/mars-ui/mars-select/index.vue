@@ -1,5 +1,5 @@
 <template>
-  <a-select class="mars-select" dropdownClassName="mars-select-dropdown" v-bind="attrs">
+  <a-select class="mars-select" popupClassName="mars-select-dropdown" v-bind="attrs">
     <template v-for="(comp, name) in slots" :key="name" v-slot:[name]>
       <component :is="comp" />
     </template>
@@ -36,7 +36,7 @@ export default defineComponent({
   }
 
   :deep(.ant-select-arrow) {
-    color: var(--mars-base-color) !important;
+    color: var(--mars-sub-title-color) !important;
   }
 }
 </style>

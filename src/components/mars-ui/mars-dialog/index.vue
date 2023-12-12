@@ -602,7 +602,8 @@ export default {
     line-height: 44px;
     overflow: hidden;
     .mars-msg-title();
-    padding: 0 5px 0px 10px;
+    // padding: 0 5px 0px 10px;
+    padding:0px;
     color: var(--mars-base-color);
     position: absolute;
     top: 0;
@@ -615,12 +616,14 @@ export default {
 
     .title {
       font-size: 16px;
+      margin-left: 10px;
     }
 
     .close-btn {
       float: right;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 5px;
+      margin-right:10px;
       color: #ffffff;
     }
   }
@@ -634,6 +637,7 @@ export default {
 
   .mars-dialog__content {
     height: 100%;
+    width: 100%;
     overflow: auto;
     padding: 5px;
   }
