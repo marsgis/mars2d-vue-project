@@ -7,7 +7,7 @@ import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-
 
 export default ({ mode }: ConfigEnv) => {
   const root = process.cwd()
-
+  // 获取 .env 文件里定义的环境变量
   const ENV = loadEnv(mode, root)
 
   console.log(`当前环境信息：`, mode)
@@ -17,7 +17,6 @@ export default ({ mode }: ConfigEnv) => {
     base: ENV.VITE_BASE_URL,
     server: {
       host: "localhost",
-      https: false,
       port: 2002
     },
     define: {
@@ -61,6 +60,8 @@ export default ({ mode }: ConfigEnv) => {
       commonjsOptions: {
         include: /node_modules|packages/
       },
+      // 静态资源目录
+      assetsDir: "assets",
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         input: {
@@ -81,7 +82,12 @@ export default ({ mode }: ConfigEnv) => {
       // 设置为 false 可以禁用最小化混淆,或是用来指定是应用哪种混淆器 boolean | 'terser' | 'esbuild'
       minify: "terser",
       // 传递给 Terser 的更多 minify 选项
-      terserOptions: {},
+      terserOptions: {
+        compress: {
+          drop_console: true, // 在生产环境移除console.log
+          drop_debugger: true // 在生产环境移除debugger
+        }
+      },
       // 设置为false 来禁用将构建好的文件写入磁盘
       write: true,
       // 默认情况下 若 outDir 在 root 目录下， 则 Vite 会在构建时清空该目录。

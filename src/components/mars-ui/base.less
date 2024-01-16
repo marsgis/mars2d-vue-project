@@ -17,6 +17,7 @@
 .mars2d-popup-edititem {
   width: 180px;
   height: 30px;
+  line-height: 30px;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #b7bdc7;
   border-radius: 0px;
@@ -27,6 +28,11 @@
   &:hover {
     border: 1px solid #1890ff;
   }
+}
+.mars2d-popup-edititem::placeholder {
+  color: #000;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 // 提示组件标题样式
@@ -69,11 +75,16 @@
   border-right: 1px solid #008aff70;
   box-shadow: 0px 4px 15px 1px rgba(2, 33, 59, 0.3);
   border-radius: 0px;
-  background: linear-gradient(to left, var(--mars-base-color), var(--mars-base-color)) left bottom no-repeat,
+  background:
+    linear-gradient(to left, var(--mars-base-color), var(--mars-base-color)) left bottom no-repeat,
     linear-gradient(to bottom, var(--mars-base-color), var(--mars-base-color)) left bottom no-repeat,
     linear-gradient(to left, var(--mars-base-color), var(--mars-base-color)) right bottom no-repeat,
     linear-gradient(to left, var(--mars-base-color), var(--mars-base-color)) right bottom no-repeat;
-  background-size: 1px 10px, 10px 1px, 1px 10px, 10px 1px;
+  background-size:
+    1px 10px,
+    10px 1px,
+    1px 10px,
+    10px 1px;
   background-color: var(--mars-bg-base) !important;
 }
 
@@ -146,7 +157,7 @@
     margin-bottom: 10px !important;
     color: var(--mars-text-color);
 
-    .ant-form-item-label>label {
+    .ant-form-item-label > label {
       font-size: 16px;
       color: var(--mars-sub-title-color);
     }
@@ -227,7 +238,7 @@
 
   // 表格
   .ant-table,
-  .ant-table-thead>tr>th {
+  .ant-table-thead > tr > th {
     color: var(--mars-sub-title-color);
     background: none !important;
   }
@@ -248,12 +259,12 @@
     background-color: var(--mars-select-bg);
   }
 
-  .ant-table-tbody>tr.ant-table-placeholder>td {
+  .ant-table-tbody > tr.ant-table-placeholder > td {
     background: #141414;
   }
 
-  .ant-table-row:hover>td,
-  .ant-table-row-selected>td {
+  .ant-table-row:hover > td,
+  .ant-table-row-selected > td {
     background-color: transparent !important;
   }
 
@@ -269,7 +280,7 @@
     background: transparent !important;
   }
 
-  .ant-table-placeholder>td {
+  .ant-table-placeholder > td {
     background: var(--mars-bg-base) !important;
   }
 
@@ -483,6 +494,17 @@
 
   .ant-cascader-menu-item-expand-icon {
     color: var(--mars-text-color);
+  }
+}
+
+.marker-list-li_icon {
+  height: 30px;
+  padding: 5px;
+  background: #f5f5f5;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  &:hover {
+    border-color: #4983e2;
   }
 }
 

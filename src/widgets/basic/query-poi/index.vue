@@ -35,7 +35,7 @@
           </ul>
           <div class="query-site__page">
             <p class="query-site-allcount">共{{ allCount }}条结果</p>
-            <a-pagination  @change="(page: number) => querySiteList(searchTxt, page)" size="small" :total="allCount" :pageSize="6" :simple="true" />
+            <a-pagination @change="(page: number) => querySiteList(searchTxt, page)" size="small" :total="allCount" :pageSize="6" :simple="true" />
           </div>
         </template>
         <a-empty class="f-push-10-t" v-else />
@@ -65,7 +65,6 @@ const siteSource = ref<any[]>([])
 
 const allCount = ref(0)
 const url = "//www.amap.com/detail/"
-
 
 let timer
 
@@ -233,6 +232,7 @@ function addHistory(data: any) {
     .button {
       height: 44px;
       width: 55px;
+      border-radius: 0;
     }
   }
 }
@@ -310,6 +310,8 @@ function addHistory(data: any) {
 }
 
 :deep(.ant-input-clear-icon) {
-  color: var(--mars-content-color) !important;
+  .anticon {
+    color: var(--mars-content-color) !important;
+  }
 }
 </style>
