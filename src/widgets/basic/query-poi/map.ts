@@ -36,16 +36,16 @@ export function onMounted(mapInstance: mars2d.Map): void {
     let inHtml = `<div class="mars2d-template-titile"><a href="https://www.amap.com/detail/${item.id}"  target="_black" style="color: #ffffff; ">${item.name}</a></div><div class="mars2d-template-content" >`
 
     if (item.tel.length && item.tel !== "") {
-      inHtml += "<div><label>电话:</label>" + item.tel + "</div>"
+      inHtml += "<div><label class='mars-popup-label'>电话:</label>" + item.tel + "</div>"
     }
 
     if (item.address) {
-      inHtml += "<div><label>地址:</label>" + item.address + "</div>"
+      inHtml += "<div><label class='mars-popup-label'>地址:</label>" + item.address + "</div>"
     }
     if (item.type) {
       const fl = item.type
       if (fl !== "") {
-        inHtml += "<div><label>类别:</label>" + fl + "</div>"
+        inHtml += "<div><label class='mars-popup-label'>类别:</label>" + fl + "</div>"
       }
     }
     inHtml += "</div>"

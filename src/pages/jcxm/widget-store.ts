@@ -63,3 +63,17 @@ const store: StoreOptions<WidgetState> = {
 }
 
 export default store
+
+// src\widgets\basic\toolbar\index.vue 中使用的菜单数组
+window.toolBarMenuData = [
+  { name: "底图", img: "img/icon/basemap.png", activeImg: "img/icon/basemap-active.png", widget: "manage-basemap" },
+  { name: "图层", img: "img/icon/layer.png", activeImg: "img/icon/layer-active.png", widget: "manage-layers" },
+  {
+    name: "工具",
+    img: "img/icon/tool.png",
+    activeImg: "img/icon/tool-active.png",
+    children: [
+      { name: "坐标定位", icon: "local", widget: "location-point" }
+    ]
+  }
+]

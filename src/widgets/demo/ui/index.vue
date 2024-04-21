@@ -1,32 +1,27 @@
 <template>
-  <mars-dialog :draggable="false" top="10" bottom="10" right="10" width="400" :before-close="beforeClose" closeable>
+  <mars-dialog :nopadding="true" :draggable="false" top="10" bottom="10" right="10" width="330"
+    :before-close="beforeClose" :closeable="false">
     <a-form :model="formState" :rules="rules" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-      <a-collapse v-model:activeKey="activeKey">
+      <a-collapse v-model:activeKey="activeKey" expandIconPosition="end">
         <!-- 自定义切换图标 -->
         <template #expandIcon>
-          <mars-icon icon="down-c" class="icon-vertical-a" />
+          <mars-icon icon="down-c" />
         </template>
         <a-collapse-panel key="1" header="表单控件1">
           <!-- 自定义面板右侧图标 -->
           <template #extra>
-            <mars-icon icon="config" class="icon-vertical-a" />
+            <mars-icon icon="config" />
           </template>
           <a-form-item label="简单文本" name="url">
             <mars-input v-model:value="formState.url" :allowClear="true" @change="onTextChange" />
           </a-form-item>
 
-          <a-form-item label="地图交互" name="extent">
-            <a-row :gutter="5">
-              <a-col :span="19">
+            <a-form-item label="地图交互" name="extent">
+              <a-space>
                 <mars-input v-model:value="formState.extent" :allowClear="true"></mars-input>
-              </a-col>
-              <a-col :span="5">
-                <a-space size="small">
-                  <mars-button class="small-btn" @click="onClickDrawExtent">绘制</mars-button>
-                </a-space>
-              </a-col>
-            </a-row>
-          </a-form-item>
+                <mars-button class="small-btn" @click="onClickDrawExtent">绘制</mars-button>
+              </a-space>
+            </a-form-item>
 
           <a-form-item label="数字输入">
             <mars-input-number v-model:value="formState.countCar" :step="0.1" @change="onNumberChange" />
@@ -41,20 +36,22 @@
           </a-form-item>
 
           <a-form-item label="滑动条">
-            <mars-slider v-model:value="formState.brightness" :min="-0.5" :max="1.5" :step="0.05" @change="onSliderChange" />
+            <mars-slider v-model:value="formState.brightness" :min="-0.5" :max="1.5" :step="0.05"
+              @change="onSliderChange" />
           </a-form-item>
 
           <a-form-item label="刻度滑动条">
-            <mars-slider v-model:value="formState.contrast" :marks="marks" :min="-255" :max="255" :step="1" @change="onMarkSliderChange" />
+            <mars-slider v-model:value="formState.contrast" :marks="marks" :min="-255" :max="255" :step="1"
+              @change="onMarkSliderChange" />
           </a-form-item>
 
-          <a-form-item label="多选">
-            <a-checkbox-group v-model:value="formState.checkboxVal" @change="onCheckboxChange">
-              <a-checkbox value="mars">火星</a-checkbox>
-              <a-checkbox value="earth">地球</a-checkbox>
-              <a-checkbox value="sun">太阳</a-checkbox>
-            </a-checkbox-group>
-          </a-form-item>
+            <a-form-item label="多选" class="f-push-20-t">
+              <a-checkbox-group v-model:value="formState.checkboxVal" :indeterminate="true" @change="onCheckboxChange">
+                <a-checkbox value="mars">火星</a-checkbox>
+                <a-checkbox value="earth">地球</a-checkbox>
+                <a-checkbox value="sun">太阳</a-checkbox>
+              </a-checkbox-group>
+            </a-form-item>
 
           <a-form-item label="单选">
             <a-radio-group v-model:value="formState.radioVal">
@@ -64,35 +61,40 @@
             </a-radio-group>
           </a-form-item>
 
-          <a-form-item label="允许鼠标操作:">
-            <a-switch v-model:checked="formState.isScale" @change="onSwitchChange" />
-          </a-form-item>
+            <a-form-item label="鼠标操作">
+              <a-space>
+                <mars-switch v-model:checked="formState.isScale" @change="onSwitchChange" />
+                <span class="f-fs12 f-ff0" style="color: rgba(234, 242, 255, 0.5)">是否允许</span>
+              </a-space>
+            </a-form-item>
 
           <a-form-item label="颜色选择">
             <mars-color-picker v-model:value="formState.color" />
             已选择:{{ formState.color }}
           </a-form-item>
 
-          <div class="f-tac">
-            <a-space>
-              <mars-button size="middle" @click="onClickMessage">
-                <template #icon><mars-icon icon="alarm" class="icon-vertical-a" /></template>
-                消息
-              </mars-button>
-              <mars-button size="middle" @click="onClickNotify">
-                <template #icon><mars-icon icon="download-one" class="icon-vertical-a" /></template>
-                提示
-              </mars-button>
-              <mars-button size="middle" @click="onClickAlert">
-                <template #icon><mars-icon icon="download-one" class="icon-vertical-a" /></template>
-                弹窗
-              </mars-button>
-            </a-space>
+          <div class="messages-btn">
+            <mars-button size="middle" @click="onClickMessage">
+              <template #icon><mars-icon icon="comment" class="icon-vertical-a" width="16" /></template>
+              消息
+            </mars-button>
+            <mars-button size="middle" @click="onClickNotify">
+              <template #icon><mars-icon icon="tips-one" class="icon-vertical-a" width="16" /></template>
+              提示
+            </mars-button>
+            <mars-button size="middle" @click="onClickAlert">
+              <template #icon><mars-icon icon="browser" class="icon-vertical-a" width="16" /></template>
+              弹窗
+            </mars-button>
+            <mars-button size="middle" disabled>
+              <template #icon><mars-icon icon="invalid-files" class="icon-vertical-a" width="16" /></template>
+              禁用
+            </mars-button>
           </div>
         </a-collapse-panel>
 
         <a-collapse-panel key="2" header="表格控件">
-          <a-table
+          <mars-table
             size="small"
             :customRow="customTableRow"
             :row-selection="rowSelection"
@@ -100,17 +102,19 @@
             :pagination="{ pageSize: 5 }"
             :columns="columns"
             :data-source="typhoonList"
-            rowKey="id"
-          >
+            rowKey="id">
             <template #bodyCell="{ column, text }">
               <template v-if="column.dataIndex === 'name'">
                 <a>{{ text }}</a>
               </template>
             </template>
-          </a-table>
+          </mars-table>
         </a-collapse-panel>
+
         <a-collapse-panel key="3" header="树控件">
-          <mars-tree checkable :tree-data="treeData" v-model:expandedKeys="expandedKeys" v-model:checkedKeys="checkedKeys" @check="onCheckTreeItem">
+          <mars-tree checkable :tree-data="treeData" v-model:expandedKeys="expandedKeys"
+            v-model:checkedKeys="checkedKeys"
+            @check="onCheckTreeItem">
             <template #title="{ title }">
               <span>{{ title }}</span>
             </template>
@@ -118,17 +122,15 @@
         </a-collapse-panel>
       </a-collapse>
 
-      <div class="f-tac">
-        <a-space>
-          <mars-button size="middle" @click="onClickLoading">
-            <template #icon><mars-icon icon="find" class="icon-vertical-a" /></template>
-            进度条1
-          </mars-button>
-          <mars-button size="middle" @click="onClickTopLoading">
-            <template #icon><mars-icon icon="planet" class="icon-vertical-a" /></template>
-            进度条2
-          </mars-button>
-        </a-space>
+      <div class="f-mb footer">
+        <mars-button @click="onClickLoading">
+          <template #icon><mars-icon icon="find" class="icon-vertical-a" /></template>
+          进度条1
+        </mars-button>
+        <mars-button @click="onClickTopLoading">
+          <template #icon><mars-icon icon="planet" class="icon-vertical-a" /></template>
+          进度条2
+        </mars-button>
       </div>
     </a-form>
   </mars-dialog>
@@ -369,9 +371,9 @@ onMounted(() => {
   const url = `${process.env.BASE_URL}config/config.json`
   axios.get(url).then(function (res: any) {
     const data = res.data
-    const layers = data.map3d.layers
-    for (let i = layers.length - 1; i >= 0; i--) {
-      const layer = mapWork.createLayer(layers[i]) //  创建图层
+    const layers = data.mars2d?.layers
+    for (let i = layers?.length - 1; i >= 0; i--) {
+      const layer = mapWork.createLayer(layers[i]) // 创建图层
       if (layer && layer.pid === 20) {
         const node: any = {
           title: layer.name,
@@ -397,7 +399,7 @@ function findChild(parent: any, list: any[]) {
         id: item.id,
         pId: item.pid
       }
-      const nodeLayer = mapWork.createLayer(item) //  创建图层
+      const nodeLayer = mapWork.createLayer(item) // 创建图层
       layersObj[item.id] = nodeLayer
       node.children = findChild(node, list)
       expandedKeys.value.push(node.key)
@@ -430,6 +432,38 @@ const onCheckTreeItem = (keys: string[]) => {
 
 <style lang="less">
 .infoView {
-  overflow: auto;
+  overflow-y: auto;
+}
+
+.color-state {
+  padding-bottom: 1.3px;
+}
+
+.ui-container {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.small-btn {
+  width: 66px;
+}
+
+.messages-btn,
+.footer {
+  width: 100%;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  .mars-button {
+    width: 100%;
+  }
+}
+
+.messages-btn {
+  padding: 0;
+  gap: 4px;
 }
 </style>

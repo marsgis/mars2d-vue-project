@@ -3,19 +3,27 @@
     <div class="mars-dialog-thumb" v-show="isFold && show" ref="thumbnailRef" @click="toogleFold(false)">
       <mars-icon :icon="mergeProps.thumbnail.icon" :width="20" color="#FFFFFF"></mars-icon>
     </div>
-    <div
-      class="mars-dialog"
-      :class="[customClass, animationClass]"
-      :style="{ 'padding-top': showHeader ? '44px' : '10px', 'padding-bottom': slots.footer ? '44px' : '10px' }"
-      ref="dialogRef"
-      v-show="visible && !isFold && show"
-    >
-      <div v-if="showHeader" class="mars-dialog__header" :style="{ cursor: mergeProps.draggable ? 'move' : 'auto' }" @mousedown="dragStart">
+    <div class="mars-dialog" :class="[customClass, animationClass]" ref="dialogRef" v-show="visible && !isFold && show">
+      <div
+        v-if="showHeader"
+        :class="['mars-dialog__header', slots.tabs ? 'header-shadow_no' : '']"
+        :style="{ cursor: mergeProps.draggable ? 'move' : 'auto' }"
+        @mousedown="dragStart"
+      >
         <mars-icon v-if="mergeProps.icon" :icon="mergeProps.icon" :width="18" color="#41A8FF" class="icon"></mars-icon>
+        <slot v-else-if="slots.icon" name="icon"></slot>
         <slot v-if="slots.title" name="title"></slot>
         <span v-else class="title">{{ mergeProps.title }}</span>
-        <mars-icon v-if="mergeProps.closeable && mergeProps.closeButton" icon="close" :width="18" class="close-btn" @click="close"></mars-icon>
+        <mars-icon
+          v-if="mergeProps.closeable && mergeProps.closeButton"
+          icon="close"
+          color="#3385FF"
+          :width="18"
+          class="close-btn"
+          @click="close"
+        ></mars-icon>
       </div>
+
       <mars-icon
         v-else-if="mergeProps.closeable && mergeProps.closeButton"
         icon="close-one"
@@ -24,8 +32,15 @@
         @click="close"
       ></mars-icon>
 
-      <div class="mars-dialog__content">
+      <div v-if="slots.tabs" class="mars-dialog__tabs">
+        <slot name="tabs"></slot>
+      </div>
+      <div class="mars-dialog__content" :style="getContentStyle()">
         <slot></slot>
+      </div>
+
+      <div v-if="slots.sideBar" class="mars-dialog_sideBar" :class="{ siderBarRight: barPosition === 'right' }">
+        <slot name="sideBar"></slot>
       </div>
 
       <div v-if="slots.footer" class="mars-dialog__footer">
@@ -79,6 +94,7 @@ interface Props {
   right?: number | string // 定位right值
   top?: number | string // 定位top值
   bottom?: number | string // 定位bottom值
+  nopadding?: boolean // 是否存在 padding 值
   position?: Position // 统一设置位置属性，优先级高于 left right top bottom
 
   handles?: boolean | string // 缩放控制器
@@ -86,6 +102,7 @@ interface Props {
   minHeight?: number // 最小高度
   maxWidth?: number // 最大宽度
   maxHeight?: number // 最大高度
+  barPosition?: string // 侧边栏的位置
   zIndex?: number // 层级
 
   icon?: string
@@ -107,6 +124,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   visible: false,
   show: true,
+  nopadding: false,
   closeable: false,
   closeButton: true,
   draggable: true,
@@ -115,9 +133,10 @@ const props = withDefaults(defineProps<Props>(), {
   defaultFold: false,
   minWidth: 100,
   minHeight: 100,
-  maxWidth: 100000,
-  maxHeight: 1000,
-  zIndex: 900
+  maxWidth: window.innerWidth,
+  maxHeight: window.innerHeight,
+  zIndex: 900,
+  barPosition: "left"
 })
 
 const emits = defineEmits(["update:visible", "resize", "move", "closed"])
@@ -155,7 +174,7 @@ const mergeProps = computed(() => {
   newProps.thumbnail.icon = newProps.thumbnail.icon ?? newProps.icon ?? "left-expand"
 
   if (!isAllowValue(newProps.left) && !isAllowValue(newProps.right)) {
-    // left right 都不存在时默认出现在左侧
+    // left right 都不存在时默认出现在右侧
     newProps.right = 10
   }
   if (!isAllowValue(newProps.top) && !isAllowValue(newProps.bottom)) {
@@ -163,7 +182,7 @@ const mergeProps = computed(() => {
     newProps.top = 10
   }
 
-  if (isAllowValue(newProps.closeable) && (slots.title || isAllowValue(newProps.title) || isAllowValue(newProps.icon) || newProps.draggable)) {
+  if (isAllowValue(newProps.closeable) && (slots.title || isAllowValue(newProps.title) || isAllowValue(newProps.icon))) {
     newProps.closeable = true
   }
 
@@ -174,9 +193,34 @@ const mergeProps = computed(() => {
   return newProps
 })
 
-const showHeader = computed(
-  () => slots.title || isAllowValue(mergeProps.value.icon) || isAllowValue(mergeProps.value.title) || mergeProps.value.draggable
-)
+const showHeader = computed(() => slots.title || isAllowValue(mergeProps.value.icon) || isAllowValue(mergeProps.value.title))
+const getContentStyle = () => {
+  const style: any = {}
+  style.height = "100%"
+  // 头部和脚部各有一个时
+  if (showHeader.value) {
+    style.height = "calc(100% - 40px)"
+    style.borderTopLeftRadius = "0 !important"
+    style.borderTopRightRadius = "0 !important"
+  }
+  if (slots.footer) {
+    style.height = "calc(100% - 40px)"
+    style.borderBottomLeftRadius = "0 !important"
+    style.borderBottomRightRadius = "0 !important"
+  }
+
+  // 头部和脚部都有时
+  if (showHeader.value && slots.footer) {
+    style.height = "calc(100% - 80px)"
+    style.paddingBottom = 0
+  }
+
+  // 无内边距
+  if (mergeProps.value.nopadding) {
+    style.padding = "0 !important"
+  }
+  return style
+}
 
 const dialogRef = ref()
 const thumbnailRef = ref()
@@ -577,7 +621,8 @@ export default {
 
 <style lang="less" scoped>
 .mars-dialog-thumb {
-  background-color: var(--mars-bg-base);
+  background-color: var(--mars-base-bg);
+  backdrop-filter: blur(10px);
   position: absolute;
   padding: 5px;
   border-radius: 5px;
@@ -587,14 +632,17 @@ export default {
 .mars-dialog {
   position: absolute;
   box-sizing: border-box;
-  padding: 10px 10px 10px 10px;
-  border-radius: 4px;
   z-index: 999 !important;
-  border-bottom: 1px solid #008aff70;
-  border-left: 1px solid #008aff70;
-  border-right: 1px solid #008aff70;
-  z-index: 100;
+
   .mars-drop-bg();
+  box-shadow: var(--mars-base-shadow);
+  border-radius: 4px;
+  // border-image 与 border-radius 无法共存
+  // padding 作为边框，与 mars-dialog__content 背景
+  padding: 1px;
+  background: var(--mars-base-border);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
 
   .mars-dialog__header {
     height: 44px;
@@ -602,30 +650,33 @@ export default {
     line-height: 44px;
     overflow: hidden;
     .mars-msg-title();
-    // padding: 0 5px 0px 10px;
-    padding:0px;
-    color: var(--mars-base-color);
-    position: absolute;
+    box-shadow: var(--mars-collapse-title-shadow);
+    border-radius: 4px 4px 0 0;
+    padding: 0 5px 0px 10px;
+    color: var(--mars-text-color);
+    position: relative;
     top: 0;
     left: 0;
 
     .icon {
-      margin-right: 5px;
-      color: #ffffff;
+      margin-right: 11px;
+      color: #41a8ff;
     }
 
     .title {
       font-size: 16px;
-      margin-left: 10px;
     }
 
     .close-btn {
       float: right;
       cursor: pointer;
-      margin-top: 5px;
-      margin-right:10px;
-      color: #ffffff;
+      margin-top: 12px;
+      color: var(--mars-text-color);
     }
+  }
+
+  .header-shadow_no {
+    box-shadow: none !important;
   }
 
   .close-btn__flot {
@@ -637,22 +688,42 @@ export default {
 
   .mars-dialog__content {
     height: 100%;
-    width: 100%;
+    padding: 14px;
     overflow: auto;
-    padding: 5px;
+    border-radius: 4px;
+    background-color: var(--mars-dropdown-bg);
+
+    :deep(.ant-form) {
+      padding: 0;
+    }
+  }
+
+  .mars-dialog__tabs {
+    width: 100%;
+    height: 32px;
+  }
+
+  .mars-dialog_sideBar {
+    position: absolute;
+    top: 42px;
+  }
+
+  .siderBarRight {
+    right: -32px;
   }
 
   .mars-dialog__footer {
-    height: 44px;
-    width: 100%;
+    height: 39px;
+    width: calc(100% - 2px);
     color: var(--mars-text-color);
+    background-color: var(--mars-dropdown-bg);
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 1px;
+    bottom: 1px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 10px;
+    padding-left: 14px;
   }
 
   .mars-dialog__handle {

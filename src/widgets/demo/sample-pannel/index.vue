@@ -1,17 +1,11 @@
 <template>
-  <mars-dialog :draggable="false" top="100" left="10" :width="400" :right="10">
+  <mars-dialog :draggable="false" top="100" :width="400" :right="10">
     <a-form :model="formState" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
       <a-form-item label="面板测试" name="extent">
-        <a-row :gutter="5">
-          <a-col :span="19">
-            <mars-input v-model:value="formState.extent" :allowClear="true"></mars-input>
-          </a-col>
-          <a-col :span="5">
-            <a-space>
-              <mars-button class="small-btn" @click="onClickDrawExtent">绘制</mars-button>
-            </a-space>
-          </a-col>
-        </a-row>
+        <a-space>
+          <mars-input v-model:value="formState.extent" :allowClear="true"></mars-input>
+          <mars-button class="small-btn" @click="onClickDrawExtent">绘制</mars-button>
+        </a-space>
       </a-form-item>
     </a-form>
   </mars-dialog>

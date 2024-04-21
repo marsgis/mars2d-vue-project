@@ -1,8 +1,16 @@
 <template>
-  <mars-dialog title="图层" width="280" :min-width="250" top="60" bottom="40" right="10">
-    <mars-tree checkable :tree-data="treeData" v-model:expandedKeys="expandedKeys" v-model:checkedKeys="checkedKeys" @check="checkedChange">
+  <mars-dialog custom-class="manage-layer_pannel" :draggable="true" width="300" :min-width="250" top="60" right="10">
+    <template #title>
+      <div class="title">
+        <img src="/img/icon/layer.png" alt="" />
+        图层
+      </div>
+    </template>
+
+    <mars-tree class="layer-tree" checkable :tree-data="treeData" v-model:expandedKeys="expandedKeys"
+      v-model:checkedKeys="checkedKeys" @check="checkedChange">
       <template #title="node">
-        <mars-dropdown :trigger="['contextmenu']">
+        <mars-dropdown-menu :trigger="['contextmenu']">
           <span @dblclick="flyTo(node)">{{ node.title }}</span>
           <template #overlay v-if="node.hasZIndex">
             <a-menu @click="(menu) => onContextMenuClick(node, menu.key)">
@@ -12,26 +20,33 @@
               <a-menu-item key="4">图层置为底层</a-menu-item>
             </a-menu>
           </template>
-        </mars-dropdown>
+        </mars-dropdown-menu>
         <span v-if="node.hasOpacity" v-show="node.checked" class="tree-slider">
           <mars-slider v-model:value="opacityObj[node.id]" :min="0" :step="1" :max="100" @change="opcityChange(node)" />
         </span>
       </template>
     </mars-tree>
+
+    <template #footer>
+      <div class="tips">提示：双击可定位视域至其所在位置</div>
+    </template>
   </mars-dialog>
 </template>
+
 <script lang="ts" setup>
 import { onUnmounted, nextTick, reactive, ref, onMounted } from "vue"
 import useLifecycle from "@mars/common/uses/use-lifecycle"
 import * as mapWork from "./map"
 import { useWidget } from "@mars/common/store/widget"
 
-const { activate, disable, currentWidget } = useWidget()
+const { activate, disable, updateWidget, currentWidget } = useWidget()
 onMounted(() => {
   initTree()
 })
 onUnmounted(() => {
   disable("layer-tree")
+
+  updateWidget("toolbar", "manage-layer")
 })
 
 useLifecycle(mapWork)
@@ -292,11 +307,57 @@ function findChild(parent: any, list: any[]) {
 }
 </script>
 
+
+<style lang="less">
+.manage-layer_pannel {
+  .mars-dialog__content {
+    overflow-x: hidden !important;
+  }
+}
+
+.layer-tree {
+  .ant-tree-treenode-checkbox-checked {
+    .ant-tree-node-content-wrapper {
+      width: calc(100% - 55px);
+
+      .ant-tree-title {
+        display: inline-flex;
+        width: calc(100% - 30px);
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+</style>
+
 <style scoped lang="less">
+.title {
+  width: 50%;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-family: var(--mars-font-family);
+}
+
 .tree-slider {
   display: inline-block;
-  width: 70px;
+  width: 100px;
   margin-left: 5px;
+  margin-right: 5px;
   vertical-align: middle;
+}
+
+.tips {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  color: #9E9E9E;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

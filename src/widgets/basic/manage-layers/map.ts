@@ -18,6 +18,20 @@ export const eventTarget = new mars2d.BaseClass()
  */
 export function onMounted(mapInstance: mars2d.Map): void {
   map = mapInstance // 记录首次创建的map
+
+  map.on("popupopen", function (e) {
+    const popupBtn = e.popup._closeButton
+    const labels = e.popup._container.getElementsByTagName("label")
+    if (popupBtn) {
+      popupBtn.style.setProperty("color", "#757575", "important")
+    }
+    if (labels) {
+      for (let i = 0; i < labels.length; i++) {
+        const label = labels[i]
+        label.classList.add("mars-popup-label")
+      }
+    }
+  })
 }
 
 /**
