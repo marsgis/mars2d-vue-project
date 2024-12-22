@@ -682,7 +682,7 @@ chainWebpack: (config) => {
 ```json
 //已忽略其他配置
 "dependencies": {
-  "@turf/turf": "^6.5.0",
+  "@turf/turf": "^7.1.0",
   "mars2d-cesium": "^1.89.0",
 },
 ```
