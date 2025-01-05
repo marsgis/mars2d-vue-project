@@ -33,7 +33,7 @@ const withKeyId = computed(() => `mars2d-container-${props.mapKey}`)
 onMounted(() => {
   // 获取配置
   mars2d.Util.fetchJson({ url: props.url }).then((data: any) => {
-    initMars2d(data.mars2d)
+    initMars2d(data)
   })
 })
 
