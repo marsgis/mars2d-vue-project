@@ -65,8 +65,7 @@ export default ({ mode }: ConfigEnv) => {
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         input: {
-          index: path.resolve(__dirname, "index.html"),
-          demo: path.resolve(__dirname, "demo.html")
+          index: path.resolve(__dirname, "index.html")
         }
         // 此处可排除不打包mars2d相关资源，需要在html中手动引入相关资源
         // external: ["./leaflet", "./mars2d"],

@@ -7,6 +7,6 @@
 export {}
 declare global {
   interface Window {
-    toolBarMenuData:any
+
   }
 }

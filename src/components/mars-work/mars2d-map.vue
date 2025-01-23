@@ -7,20 +7,20 @@
  * @copyright 火星科技 mars2d.cn
  * @author 火星吴彦祖 2022-02-19
  */
-import { computed, onUnmounted, onMounted } from "vue"
+import { computed, onUnmounted, onMounted, toRaw } from "vue"
 import * as mars2d from "mars2d"
 import { $alert, $message } from "@mars/components/mars-ui/index"
 
 const props = withDefaults(
   defineProps<{
-    url: string;
-    mapKey?: string;
-    options?: any;
+    mapKey?: string
+    url: string
+    options?: any
   }>(),
   {
-    url: "",
     mapKey: "default",
-    options: () => ({})
+    url: undefined,
+    options: undefined
   }
 )
 
@@ -30,18 +30,27 @@ let map: mars2d.Map // 地图对象
 // 使用用户传入的 mapKey 拼接生成 withKeyId 作为当前显示容器的id
 const withKeyId = computed(() => `mars2d-container-${props.mapKey}`)
 
-onMounted(() => {
-  // 获取配置
-  mars2d.Util.fetchJson({ url: props.url }).then((data: any) => {
-    initMars2d(data)
-  })
-})
-
 // onload事件将在地图渲染后触发
 const emit = defineEmits(["onload"])
-const initMars2d = (option: any) => {
-  option = mars2d.Util.merge(option, props.options) // 合并配置
-  map = new mars2d.Map(withKeyId.value, option)
+
+const initMars2D = async () => {
+  // 获取配置
+  let mapOptions
+  if (props.url) {
+    // 存在url时才读取
+    mapOptions = await mars2d.Util.fetchJson({ url: props.url })
+    if (mapOptions.map3d) {
+      mapOptions = mapOptions.map3d
+    }
+    if (props.options) {
+      mapOptions = mars2d.Util.merge(mapOptions, toRaw(props.options)) // 合并配置
+    }
+  } else if (props.options) {
+    mapOptions = toRaw(props.options)
+  }
+  console.log("Map二维地图构造参数", mapOptions)
+
+  map = new mars2d.Map(withKeyId.value, mapOptions)
 
   // map构造完成后的一些处理
   onMapLoad()
@@ -62,6 +71,10 @@ function onMapLoad() {
     $alert(item.NAME)
   }
 }
+
+onMounted(() => {
+  initMars2D()
+})
 
 // 组件卸载之前销毁mars2d实例
 onUnmounted(() => {

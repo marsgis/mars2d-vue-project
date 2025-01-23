@@ -6,7 +6,8 @@
         :class="['toolbar-item', activeTools.includes(item.widget) ? 'active' : '']"
         @mouseenter="enterWidget(item.widget ?? i)"
         @mouseleave="leaveWidget(item.widget ?? i)"
-        @click="showWidget(item.widget)">
+        @click="showWidget(item.widget)"
+      >
         <mars-icon v-if="item.icon" :icon="item.icon" width="18"></mars-icon>
         <img v-if="item.img && !activeTools.includes(item.widget)" :src="item.img" class="image" />
         <img v-if="item.activeImg && activeTools.includes(item.widget)" :src="item.activeImg" class="image" />
@@ -18,7 +19,8 @@
         <div
           :class="['toolbar-item', isIncludesMenu(item.children, i) ? 'active' : '']"
           @mouseenter="enterWidget(item.widget ?? i)"
-          @mouseleave="leaveWidget(item.widget ?? i)">
+          @mouseleave="leaveWidget(item.widget ?? i)"
+        >
           <mars-icon v-if="item.icon" :icon="item.icon" width="18"></mars-icon>
           <img v-if="item.img && !isIncludesMenu(item.children, i)" :src="item.img" class="image" />
           <img v-if="item.activeImg && isIncludesMenu(item.children, i)" :src="item.activeImg" class="image" />
@@ -28,8 +30,7 @@
           </span>
         </div>
         <template #overlay>
-          <a-menu @click="(data) => clickMenu(data, i)" @mouseenter="enterWidget(item.widget ?? i)"
-            @mouseleave="leaveWidget(item.widget ?? i)">
+          <a-menu @click="(data) => clickMenu(data, i)" @mouseenter="enterWidget(item.widget ?? i)" @mouseleave="leaveWidget(item.widget ?? i)">
             <a-menu-item v-for="child in item.children" :key="child.widget" :title="child.name">
               <mars-icon :icon="child.icon" width="18"></mars-icon>
               <span>{{ child.name }}</span>
@@ -62,7 +63,18 @@ currentWidget.onUpdate((widget: string | any) => {
   }, 5)
 })
 
-const data = window.toolBarMenuData || []
+const data: any = [
+  { name: "底图", img: "img/icon/basemap.png", activeImg: "img/icon/basemap-active.png", widget: "manage-basemap" },
+  { name: "图层", img: "img/icon/layer.png", activeImg: "img/icon/layer-active.png", widget: "manage-layers" },
+  {
+    name: "工具",
+    img: "img/icon/tool.png",
+    activeImg: "img/icon/tool-active.png",
+    children: [
+      { name: "坐标定位", icon: "local", widget: "location-point" }
+    ]
+  }
+]
 
 const activeTools = ref<any[]>([])
 

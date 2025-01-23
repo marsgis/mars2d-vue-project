@@ -1,7 +1,8 @@
 import "leaflet/dist/leaflet.css"
-import "leaflet"
+import "mars2d/mars2d.css"
+import "font-awesome/css/font-awesome.css"
 
-import "mars2d/dist/mars2d.css"
+import "leaflet"
 import "mars2d"
 import "mars2d-esri"
 
