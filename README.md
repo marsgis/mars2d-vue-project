@@ -29,7 +29,7 @@ Mars2D 基础项目 是基于[Mars2D 平台](http://mars2d.cn)做的一个应用
 
  
 ## 文档
-- [官网教程地址](http://mars2d.cn/dev/guide/project/vue.html) 
+- [官网教程地址](http://mars2d.cn/docs/guide/project-vue/) 
   
 
 ## 视频讲解
@@ -168,7 +168,7 @@ mars2d-vue-project
 
 项目所有功能主要在 `src/widgets/*/*`目录下，每一个功能对应了叶子目录下的一个`index.vue`和 `map.ts` 文件，复杂的 widget 目录下也会有相关子组建 `xxx.vue`。
 
-vue 下的 widget 设计，沿用了我们 [原生 JS 版基础项目](http://mars2d.cn/dev/guide/project/widget.html)的设计理念：
+vue 下的 widget 设计，沿用了我们 [原生 JS 版基础项目](http://mars2d.cn/docs/guide/project-es5/)的设计理念：
 
 - 所有的 widget 都是按需加载
 - 只需要通过简单的配置，即可控制不同业务面板间的互斥关系
@@ -666,7 +666,7 @@ app.use(injectState(widgetStore), key)
 
 ### 1. 如果切换mars2d到授权版
 
- 参考 [获取Mars2D SDK类库](http://mars2d.cn/dev/guide/basics/download.html)中“从 Mars2D官网 下载获取”章节介绍。
+ 参考 [SDK授权版说明](http://mars2d.cn/docs/advanced/authorization/)介绍。
 
  流程大概是：
 - 将npm安装后的`node_modules/mars2d/`下的所有文件拷贝一份放在`src\common\mars2d-sdk\`目录。
@@ -699,7 +699,7 @@ chainWebpack: (config) => {
 
 - 修改 config.json 中`terrain`配置中，将已有的`"show": true`配置，改为`"show": false`
 - 修改 config.json 中`basemaps`数组配置中，将已有的`"show": true`的图层，将该值改为`"show": false` ，并将单张图片或离线地图加上`"show": true`，并修改相关 URL 地址。
-- 您也可以参考教程[发布地图服务](http://mars2d.cn/dev/guide/data/server.html)进行部署离线地图服务，里面也有一些示例离线数据。
+- 您也可以参考教程[发布地图服务](http://mars2d.cn/docs/data/%E6%9C%8D%E5%8A%A1/nginx%E6%9C%8D%E5%8A%A1/)进行部署离线地图服务，里面也有一些示例离线数据。
 
 
 
