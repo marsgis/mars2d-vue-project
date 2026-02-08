@@ -15,7 +15,11 @@ export function onMounted(mapInstance: mars2d.Map): void {
   map = mapInstance // 记录map
 
   const baseMaps = map.getBasemaps(true)
-  eventTarget.fire("mapLoaded", { baseMaps })
+
+  // @ts-ignore
+  const activeBaseMapId = map.basemap.id
+
+  eventTarget.fire("mapLoaded", { baseMaps, activeBaseMapId })
 }
 
 // 释放当前业务
@@ -26,4 +30,3 @@ export function onUnmounted(): void {
 export function changeBaseMaps(id: string) {
   map.basemap = id
 }
-

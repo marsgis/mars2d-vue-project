@@ -40,11 +40,8 @@ onUnmounted(() => {
 })
 
 function initData(e: any) {
+  active.value = e.activeBaseMapId
   baseMaps.value = e.baseMaps.map((m: any) => {
-    if (m.isAdded && m.show) {
-      active.value = m.id
-    }
-
     return {
       name: m.name,
       id: m.id,
