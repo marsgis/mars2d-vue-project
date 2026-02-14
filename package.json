@@ -1,6 +1,6 @@
 {
   "name": "mars2d-vue-project",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "在Vue3技术栈下的Mars2D平台 基础项目",
   "scripts": {
     "dev": "vite",
@@ -29,10 +29,10 @@
     "leaflet": "~1.9.4",
     "localforage": "^1.10.0",
     "mapv": "^2.0.62",
-    "mars2d": "~3.3.0",
-    "mars2d-echarts": "~3.3.0",
-    "mars2d-esri": "~3.3.0",
-    "mars2d-mapv": "~3.3.0",
+    "mars2d": "~3.4.0",
+    "mars2d-echarts": "~3.4.0",
+    "mars2d-esri": "~3.4.0",
+    "mars2d-mapv": "~3.4.0",
     "nprogress": "^0.2.0",
     "terser": "^5.37.0",
     "uuid": "^9.0.1",
