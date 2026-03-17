@@ -16,7 +16,7 @@
 <script setup lang="ts">
 /**
  * 渲染主入口
- * @copyright 火星科技 mars2d.cn
+ * @copyright mars2d.cn
  * @author 火星吴彦祖 2022-02-19
  */
 import zhCN from "ant-design-vue/es/locale/zh_CN"

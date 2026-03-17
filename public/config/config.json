@@ -152,7 +152,7 @@
     {
       "pid": 10,
       "name": "无底图",
-      "icon": "img/basemap/null.png",
+      "icon": "img/basemaps/null.png",
       "type": "empty"
     }
   ],
