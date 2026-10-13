@@ -96,6 +96,21 @@ const checkedChange = (keys: string[], e: any) => {
       }
     }
 
+    // 地图底图子树下的图层只能单选，但可与其他分类的图层共存
+    if (e.checked && isUnderBaseMap(layer)) {
+      const keysToRemove: number[] = []
+      checkedKeys.value.forEach((key, index) => {
+        const item = layersObj[key]
+        if (item && item !== layer && isUnderBaseMap(item)) {
+          keysToRemove.push(index)
+          item.show = false
+        }
+      })
+      for (let i = keysToRemove.length - 1; i >= 0; i--) {
+        checkedKeys.value.splice(keysToRemove[i], 1)
+      }
+    }
+
     // 处理图层的关联事件
     if (layer.options?.onWidget) {
       if (e.checked) {
@@ -149,6 +164,18 @@ function renderChildNode(keys: string[], children: any[]) {
       }
     }
   })
+}
+
+function isUnderBaseMap(layer: any): boolean {
+  if (!layer || layer.name === "地图底图") { return false }
+  let parentId = layer.pid
+  while (parentId != null && parentId !== -1) {
+    const parentLayer = layersObj[parentId]
+    if (parentLayer && parentLayer.name === "地图底图") { return true }
+    if (!parentLayer) { break }
+    parentId = parentLayer.pid
+  }
+  return false
 }
 
 const opcityChange = (node: any) => {
@@ -354,7 +381,7 @@ function findChild(parent: any, list: any[]) {
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  color: #9E9E9E;
+  color: var(--mars-extra-text-color);
   position: absolute;
   bottom: 10px;
   left: 50%;

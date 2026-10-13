@@ -24,6 +24,7 @@ export function onMounted(mapInstance: mars2d.Map): void {
  * @returns {void} 无
  */
 export function onUnmounted() {
+  eventTarget.off()
   map.graphicLayer.clear()
   map = null
 }

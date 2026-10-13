@@ -27,7 +27,7 @@ export default ({ mode }: ConfigEnv) => {
     },
     resolve: {
       alias: {
-        "@mars": path.join(__dirname, "src")
+        "@mars": path.join(import.meta.dirname, "src")
       },
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]
     },
@@ -43,7 +43,7 @@ export default ({ mode }: ConfigEnv) => {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
-          additionalData: `@import "${path.resolve(__dirname, "src/components/mars-ui/base.less")}";`
+          additionalData: `@import "${path.resolve(import.meta.dirname, "src/components/mars-ui/base.less")}";`
         }
       }
     },
@@ -62,10 +62,31 @@ export default ({ mode }: ConfigEnv) => {
       },
       // 静态资源目录
       assetsDir: "assets",
+      // 超过该值(kB)的 chunk 才告警（mars2d+leaflet 合包约 5.4MB，放宽阈值消除预期内告警）
+      chunkSizeWarningLimit: 6000,
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         input: {
-          index: path.resolve(__dirname, "index.html")
+          index: path.resolve(import.meta.dirname, "index.html")
+        },
+        output: {
+          // 按依赖大类分包：地理库(mars2d/leaflet/mapv)、图表(echarts)、UI 库(antd)、其余 vendor，
+          // 提升浏览器缓存命中率，避免业务小改动导致全量 chunk 失效
+          manualChunks(id: string) {
+            if (!id.includes("node_modules") && !/[\\/]packages[\\/]/.test(id)) {
+              return undefined
+            }
+            if (/[\\/](echarts|zrender|echarts-gl)[\\/]/.test(id)) {
+              return "echarts"
+            }
+            if (/[\\/]ant-design-vue[\\/]|[\\/]@ant-design[\\/]/.test(id)) {
+              return "antd"
+            }
+            if (/[\\/]leaflet[\\/]|[\\/]mars2d(-[a-z]+)*[\\/]|[\\/]mapv[\\/]|[\\/]kml-geojson[\\/]|[\\/]packages[\\/]mars2d[\\/]/.test(id)) {
+              return "mars2d"
+            }
+            return "vendor"
+          }
         }
         // 此处可排除不打包mars2d相关资源，需要在html中手动引入相关资源
         // external: ["./leaflet", "./mars2d"],
@@ -83,7 +104,7 @@ export default ({ mode }: ConfigEnv) => {
       // 传递给 Terser 的更多 minify 选项
       terserOptions: {
         compress: {
-          drop_console: false, // 在生产环境移除console.log
+          drop_console: true, // 在生产环境移除console.log
           drop_debugger: true // 在生产环境移除debugger
         }
       },

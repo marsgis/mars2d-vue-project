@@ -10,7 +10,7 @@
     <ul class="basemap">
       <li v-for="(item, i) in baseMaps" :key="i" class="basemap-card" :class="{ 'active-card': active === item.id }"
         @click="changeBaseMaps(item)">
-        <img class="icon" :src="`${item.options.icon || 'img/basemaps/bingAerial.png'}`" />
+        <img class="icon" :src="`${item.options.icon || 'img/basemaps/bingAerial.png'}`" loading="lazy" />
         <div class="name">{{ item.name }}</div>
       </li>
     </ul>
@@ -86,9 +86,9 @@ function changeBaseMaps(item: any) {
   vertical-align: top;
   text-align: center;
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--mars-font-size-text);
   color: var(--mars-text-color);
-  border: 1.5px solid rgba(0, 0, 0, 0.06);
+  border: 1.5px solid var(--mars-control-border);
   padding: 3px 3px 0;
   background: var(--mars-collapse-title-bg);
 
@@ -111,7 +111,7 @@ function changeBaseMaps(item: any) {
 }
 
 .active-card {
-  color: #337fe5 !important;
-  border-color: #337fe5;
+  color: var(--mars-primary-color) !important;
+  border-color: var(--mars-primary-color);
 }
 </style>

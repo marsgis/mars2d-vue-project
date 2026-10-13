@@ -134,34 +134,29 @@ const clickMenu = ({ key }: any, index: number) => {
     overflow: hidden !important;
     border: 1px solid;
     border: none;
-    background-color: var(--mars-bg-base);
     height: 40px;
   }
 
   .toolbar-item {
-    width: 110px;
+    width: 84px;
     text-align: center;
     display: inline-flex;
     align-items: center;
     height: 100%;
     color: var(--mars-text-color);
-    font-family: D-DIN;
-    font-size: 14px;
+    font-family: var(--mars-font-family);
+    font-size: 13px;
     cursor: pointer;
     position: relative;
 
-    // &:hover {
-    // .active()
-    // }
-
     .image {
       position: absolute;
-      left: 20%;
+      left: 15px;
     }
 
     .title {
       position: absolute;
-      right: 20%;
+      right: 10px;
     }
 
     &:first-child {
@@ -177,7 +172,7 @@ const clickMenu = ({ key }: any, index: number) => {
     .mars-icon {
       color: var(--mars-text-color);
       position: absolute;
-      left: 20%;
+      left: 16px;
       top: 10px;
     }
   }

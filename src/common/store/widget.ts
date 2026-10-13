@@ -92,7 +92,7 @@ export const injectState = (options: StoreOptions<WidgetState>): Store<WidgetSta
 
         const pannel = state.widgets.find((item) => item.name === value)
         if (!pannel) {
-          console.log("widget不存在", widget)
+          console.warn("widget不存在", widget)
           return
         }
 
@@ -248,6 +248,9 @@ export function useWidget() {
     },
     setVisible(name: string, visible: boolean) {
       const widget = store.state.widgets.find((item: any) => item.name === name)
+      if (!widget) {
+        return
+      }
       widget.visible = visible
     },
     // 出发对应widget的onUpdate
@@ -267,7 +270,6 @@ export function useWidget() {
       } else {
         widgets = option
       }
-      console.log("widgets", widgets)
       widgets.forEach((widget) => {
         let params: any
         if (typeof widget === "string") {

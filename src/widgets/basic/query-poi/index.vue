@@ -333,7 +333,7 @@ function addHistory(data: any) {
 
       .query-site-text {
         width: calc(100% - 12px);
-        font-size: 14px;
+        font-size: var(--mars-font-size-title);
         font-family: var(--mars-font-family);
         font-weight: normal;
         color: var(--mars-primary-color);
@@ -354,7 +354,7 @@ function addHistory(data: any) {
 
       .query-site-sub {
         width: 200px;
-        font-size: 12px;
+        font-size: var(--mars-font-size-text);
         font-weight: normal;
         font-family: var(--mars-font-family);
         margin-left: 28px;
@@ -370,7 +370,7 @@ function addHistory(data: any) {
     }
 
     .query-site__more {
-      font-size: 12px;
+      font-size: var(--mars-font-size-text);
       font-weight: normal;
       font-family: var(--mars-font-family);
       color: var(--mars-control-icon);
@@ -384,7 +384,7 @@ function addHistory(data: any) {
     padding: 10px 20px;
 
     .query-site-allcount {
-      font-size: 14px;
+      font-size: var(--mars-font-size-title);
       color: var(--mars-control-icon);
     }
 

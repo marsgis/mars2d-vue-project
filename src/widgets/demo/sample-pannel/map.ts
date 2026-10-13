@@ -14,6 +14,7 @@ export function onMounted(mapInstance: mars2d.Map): void {
 
 // 释放当前业务
 export function onUnmounted(): void {
+  eventTarget.off()
   map = null
 }
 
